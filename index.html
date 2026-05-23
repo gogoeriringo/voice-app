@@ -1,0 +1,3085 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>エクササイズ レシピ あんちょこ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  :root {
+    --pink: #e91e8c;
+    --pink-light: #f8c5e3;
+    --pink-pale: #fde8f4;
+    --blue-pale: #d6f0f8;
+    --blue-mid: #a8daf0;
+    --dark: #2a1530;
+    --gray: #6b6b6b;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(233,30,140,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(135deg, #e8f7fc 0%, #fde8f4 50%, #e8f7fc 100%);
+    min-height: 100vh;
+    color: var(--dark);
+  }
+
+  header {
+    background: var(--pink);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 12px rgba(233,30,140,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  header .subtitle {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.85);
+    margin-top: 2px;
+  }
+
+  .mic-icon {
+    font-size: 1.8rem;
+  }
+
+  /* TAB NAV */
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    padding: 16px 16px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    flex: 1;
+    min-width: 90px;
+    padding: 10px 12px;
+    border: 2px solid var(--pink);
+    background: white;
+    color: var(--pink);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+  .tab-btn:first-child { border-radius: 12px 0 0 12px; }
+  .tab-btn:last-child { border-radius: 0 12px 12px 0; }
+  .tab-btn.active {
+    background: var(--pink);
+    color: white;
+  }
+  .tab-btn:hover:not(.active) {
+    background: var(--pink-pale);
+  }
+
+  /* CONTENT */
+  .content {
+    padding: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* VOICE TYPE HEADER */
+  .voice-header {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    border-left: 5px solid var(--pink);
+    box-shadow: var(--shadow);
+  }
+  .voice-header h2 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--pink);
+    margin-bottom: 6px;
+  }
+  .voice-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .badge {
+    background: var(--pink-pale);
+    color: var(--pink);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border: 1px solid var(--pink-light);
+  }
+  .badge.warning {
+    background: #fff3e0;
+    color: #e65100;
+    border-color: #ffcc80;
+  }
+  .badge.note {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-color: #90caf9;
+  }
+
+  /* GENDER SELECTOR */
+  .gender-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .gender-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--blue-mid);
+    background: white;
+    color: var(--gray);
+    border-radius: 12px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gender-btn.active {
+    background: var(--blue-mid);
+    color: var(--dark);
+    border-color: var(--blue-mid);
+  }
+
+  /* STEP SECTIONS */
+  .step-section {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+
+  .step-header {
+    background: linear-gradient(90deg, var(--pink) 0%, #d4006e 100%);
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .step-header.step2 {
+    background: linear-gradient(90deg, #7b3fa0 0%, #5c2d91 100%);
+  }
+  .step-header.step3 {
+    background: linear-gradient(90deg, #1976d2 0%, #0d47a1 100%);
+  }
+
+  .step-number {
+    background: rgba(255,255,255,0.25);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .step-title {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+  }
+
+  .step-goal {
+    font-size: 0.78rem;
+    opacity: 0.9;
+  }
+
+  .chevron {
+    font-size: 0.8rem;
+    transition: transform 0.2s;
+  }
+  .step-header.collapsed .chevron {
+    transform: rotate(-90deg);
+  }
+
+  .step-body {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .step-body.collapsed {
+    max-height: 0;
+  }
+
+  /* EXERCISE TABLE */
+  .ex-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .ex-table thead tr {
+    background: var(--pink-pale);
+  }
+  .ex-table th {
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--pink);
+    text-align: left;
+    border-bottom: 2px solid var(--pink-light);
+  }
+  .ex-table td {
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+    line-height: 1.5;
+  }
+  .ex-table tr:last-child td {
+    border-bottom: none;
+  }
+  .ex-table tr:hover td {
+    background: var(--pink-pale);
+  }
+
+  .range-cell {
+    font-weight: 700;
+    color: var(--dark);
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    min-width: 100px;
+  }
+
+  .tool-cell {
+    color: #333;
+  }
+
+  /* CAUTION BOX */
+  .caution-box {
+    background: #fff8e1;
+    border-left: 4px solid #ffc107;
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    margin: 12px 12px 12px;
+    font-size: 0.8rem;
+    color: #5d4037;
+  }
+  .caution-box::before {
+    content: '⚠️ 注意点 ';
+    font-weight: 700;
+  }
+
+  /* SONG LIST */
+  .song-section {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  }
+  .song-header {
+    background: linear-gradient(90deg, #43a047 0%, #2e7d32 100%);
+    color: white;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .song-title-hd {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+  }
+  .song-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .song-col {
+    padding: 12px;
+  }
+  .song-col h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--pink);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--pink-light);
+  }
+  .song-item {
+    font-size: 0.8rem;
+    padding: 4px 0;
+    color: #333;
+    line-height: 1.4;
+  }
+  .step-label {
+    display: inline-block;
+    background: var(--pink);
+    color: white;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    margin-right: 4px;
+  }
+  .step-label.s2 {
+    background: #7b3fa0;
+  }
+
+  /* SENSEI BOX */
+  .sensei-box {
+    background: linear-gradient(135deg, var(--pink-pale), var(--blue-pale));
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 14px;
+    border: 1px solid var(--pink-light);
+  }
+  .sensei-box h3 {
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--pink);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    background: white;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 0.78rem;
+    border: 1px solid var(--pink-light);
+    flex: 1;
+    min-width: 110px;
+    text-align: center;
+  }
+  .flow-box.ok { border-color: #66bb6a; background: #f1f8e9; color: #2e7d32; }
+  .flow-box.ng { border-color: #ef9a9a; background: #ffebee; color: #c62828; }
+  .flow-arrow {
+    color: var(--pink);
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .song-grid { grid-template-columns: 1fr; }
+    .tab-btn { min-width: 80px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mic-icon">🎤</div>
+  <div>
+    <h1>エクササイズ レシピ あんちょこ</h1>
+
+  </div>
+</header>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('light')">ライトチェスト</button>
+  <button class="tab-btn" onclick="switchTab('pull')">プル</button>
+  <button class="tab-btn" onclick="switchTab('flip')">フリップ</button>
+  <button class="tab-btn" onclick="switchTab('tools')">🔧ツール辞典</button>
+  <button class="tab-btn" onclick="switchTab('map')">🗺️マッピング</button>
+  <button class="tab-btn" onclick="switchTab('diag')">🎤 診断</button>
+</div>
+
+<!-- ===== FLIP PANEL ===== -->
+<div class="content">
+<div id="panel-flip" class="panel">
+
+  <div class="voice-header">
+    <h2>🎯 フリップ</h2>
+    <div>輪状甲状筋と甲状披裂筋のバランスが悪い → ひっくり返る</div>
+    <div class="voice-meta">
+      <span class="badge">脆弱型 / 低音過重型</span>
+      <span class="badge">母音: え（中間）/ 広 / 狭</span>
+      <span class="badge">子音: 無声音</span>
+      <span class="badge">スケール: 1.5 / 5tone / ポルタメント</span>
+      <span class="badge warning">⚠️ 高い声は裏返す → ✗</span>
+      <span class="badge note">🗒 ファルセット得意な人多い</span>
+    </div>
+  </div>
+
+  <!-- Gender selector -->
+  <div class="gender-selector">
+    <button class="gender-btn active" onclick="switchGender('flip','f')">👩 女性</button>
+    <button class="gender-btn" onclick="switchGender('flip','m')">👨 男性</button>
+  </div>
+
+  <!-- FLIP FEMALE -->
+  <div id="flip-f">
+
+    <!-- Step1 低音過重型 -->
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">低音過重型 — Step 1</div>
+          <div class="step-goal">・繋がりを見つける</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">1.5 リップロール</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">ポルタメント 叫び — HEY(へい) / AY(えい) / YA(や)</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">ポルタメント ギシギシハミング</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">ギシギシEH(え) 1.5 staccato</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">KAY(けい) / KEE(き) / NAY(ねい) → KAE(か) / NEA(な) 1.5 Funny</td></tr>
+            <tr><td class="range-cell">C#5〜</td><td class="tool-cell">KAY(けい) / KEE(き) / NAY(ねい) — オクターブダウン Funny</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">ファルセットが得意なので超高音ファルセットまで振り切らない</div>
+      </div>
+    </div>
+
+    <!-- Step1 脆弱型 -->
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">脆弱型 — Step 1</div>
+          <div class="step-goal">・繋がりを見つける</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">ポルタメント ハミング声帯閉鎖 / 足りないなら Edgy EH(え) staccato</td></tr>
+            <tr><td class="range-cell">C#5〜</td><td class="tool-cell">ハミング or Edgy EH(え) — 1オクターブダウン or ポルタメント</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">1.5 KAY(けい) Funny</td></tr>
+            <tr><td class="range-cell">C#5〜</td><td class="tool-cell">1オクターブ KAY(けい) funny</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">1.5 KIH(き) Funny</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">上手くいかない時 → クレヨンしんちゃんで BUB(バ)、MUM(マ) 1.5</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">ファルセットが得意なので超高音ファルセットまで振り切らない</div>
+      </div>
+    </div>
+
+    <!-- Step2 -->
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">Step 2</div>
+          <div class="step-goal">・繋がりを強化する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">1st(A4-C5) or Flip付近</td><td class="tool-cell">5T KAY(けい)/KIH ハイラリで — ひっくり返る音に中指、ゆっくり、息少なく</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">ペットボトルストロー 1.5 / ポルタメント / 1オクターブ / 1D / 5T / S使うことも</td></tr>
+            <tr><td class="range-cell">C#4〜</td><td class="tool-cell">KAE(か) / NAE(な) — 1オクターブダウン</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">1.5 Hooty GOO(ぐ) / GEE(ぎ)</td></tr>
+            <tr><td class="range-cell">F3〜2nd(E5-F#/G♭5)</td><td class="tool-cell">1.5 KAY(けい) / KIH(き) ベロを出して</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Songs -->
+    <div class="song-section">
+      <div class="song-header" onclick="toggleStep(this)">
+        <span>🎵</span>
+        <div class="song-title-hd">Step 3 — 選曲（エクササイズ的課題曲）</div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <div class="song-grid">
+          <div class="song-col">
+            <h4>👩 女性</h4>
+            <div class="song-item"><span class="step-label">S1</span>明日への手紙/手島葵（モノマネ・薄くして繋げる）</div>
+            <div class="song-item"><span class="step-label">S1</span>月光/鬼束ちひろ（スロー・キーを工夫）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>Automatic/宇多田ヒカル</div>
+            <div class="song-item"><span class="step-label s2">S2</span>夜に駆ける/YOASOBI</div>
+            <div class="song-item"><span class="step-label s2">S2</span>明日が来るなら/JUJU（プル）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>EVERYTHING(転調前まで)/MISIA（プル）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>逢いたくて今/MISIA（プル）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>守ってあげたい/ユーミン（LC）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>EVERYTHING/MISIA（LC）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>プレイバックpart2/山口百恵（LC）</div>
+          </div>
+          <div class="song-col">
+            <h4>👨 男性</h4>
+            <div class="song-item"><span class="step-label">S1</span>瞳を閉じて/平井堅（スロー）</div>
+            <div class="song-item"><span class="step-label">S1</span>道/EXILE</div>
+            <div class="song-item"><span class="step-label s2">S2</span>猫/DISH//</div>
+            <div class="song-item"><span class="step-label s2">S2</span>ただ会いたくて/EXILE</div>
+            <div class="song-item"><span class="step-label s2">S2</span>蕾/コブクロ</div>
+            <div class="song-item"><span class="step-label s2">S2</span>優しさ/藤井風</div>
+            <div class="song-item"><span class="step-label s2">S2</span>メロディー/玉置浩二（LC）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>桜/森山直太朗（LC）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>蕾/コブクロ（LC）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sensei Head -->
+    <div class="sensei-box">
+      <h3>🧠 さやかさんの頭の中（フリップ女子）</h3>
+      <div style="font-size:0.82rem; margin-bottom:10px;">まず <strong>リップバブルやってから</strong> → 母音: e / 子音: K / スタート音: F#3 / スケール: 1.5</div>
+      <div class="flow-row">
+        <div class="flow-box">OK → 次の目標へ<br><small>mmmハミングポルタメント1オクターブ<br>母音を少し広げる na(nap)1.5</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ok">成功<br><small>vol上げる/1オクターブ往来/母音広げる</small></div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box ng">NG → 原因を探す<br><small>母音を一段狭める/音量を下げてグズリ/<br>1オクターブ下降スケール/ポルタメント</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ng">NG → 別アプローチ<br><small>クレヨンしんちゃん/グズリハミングポルタメント<br>姿勢改善/用手的アプローチ</small></div>
+      </div>
+    </div>
+
+  </div><!-- /flip-f -->
+
+  <!-- FLIP MALE -->
+  <div id="flip-m" style="display:none">
+
+    <!-- Step1 低音過重型 男性 -->
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">低音過重型 — Step 1</div>
+          <div class="step-goal">・繋がりを見つける</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">1.5 リップロール</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">ポルタメント 叫び — HEY(へい) / AY(えい) / YA(や)</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">ポルタメント ギシギシハミング</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">ギシギシEH(え) 1.5 staccato</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">KAY(けい) / KEE(き) / NAY(ねい) → KAE(か) / NEA(な) 1.5 Funny</td></tr>
+            <tr><td class="range-cell">G4〜</td><td class="tool-cell">KAY(けい) / KEE(き) / NAY(ねい) — オクターブダウン Funny</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">ファルセットが得意なので超高音ファルセットまで振り切らない</div>
+      </div>
+    </div>
+
+    <!-- Step1 脆弱型 男性 -->
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">脆弱型 — Step 1</div>
+          <div class="step-goal">・繋がりを見つける</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">ポルタメント ハミング声帯閉鎖 / 足りないなら Edgy EH(え) staccato</td></tr>
+            <tr><td class="range-cell">G4〜</td><td class="tool-cell">ハミング or Edgy EH(え) — 1オクターブダウン or ポルタメント</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">1.5 KAY(けい) Funny</td></tr>
+            <tr><td class="range-cell">G4〜</td><td class="tool-cell">1オクターブ KAY(けい) funny</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">1.5 KIH(き) Funny</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">上手くいかない時 → クレヨンしんちゃんで BUB(ば)、MUM(ま) 1.5</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">ファルセットが得意なので超高音ファルセットまで振り切らない</div>
+      </div>
+    </div>
+
+    <!-- Step2 男性 -->
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">Step 2</div>
+          <div class="step-goal">・繋がりを強化する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">1st(D#/E♭4-F#/G♭4) or Flip付近</td><td class="tool-cell">5T KAY(けい)/KIH ハイラリで — ひっくり返る音に中指、ゆっくり、息少なく</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">ペットボトルストロー 1.5 / ポルタメント / 1オクターブ / 1D / 5T / S使うことも</td></tr>
+            <tr><td class="range-cell">G4〜</td><td class="tool-cell">KAE(か) / NAE(な) — 1オクターブダウン</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">1.5 Hooty GOO(ぐ) / GEE(ぎ)</td></tr>
+            <tr><td class="range-cell">C3〜2nd(A4-C5)</td><td class="tool-cell">1.5 KAY(けい) / KIH(き) ベロを出して</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /flip-m -->
+
+</div><!-- /panel-flip -->
+
+
+<!-- ===== PULL PANEL ===== -->
+<div id="panel-pull" class="panel">
+
+  <div class="voice-header">
+    <h2>💪 プル</h2>
+    <div>地声が重い・張り上げる・音程が下がる・母音が広がる</div>
+    <div class="voice-meta">
+      <span class="badge">過緊張型</span>
+      <span class="badge">母音: い・う（狭）</span>
+      <span class="badge">子音: 有声子音</span>
+      <span class="badge">スケール: 1.5 / 1oct</span>
+      <span class="badge warning">⚠️ 高い声は大きな声で歌う → ✗</span>
+      <span class="badge note">🗒 ロック・舞台人に多い</span>
+    </div>
+  </div>
+
+  <div class="gender-selector">
+    <button class="gender-btn active" onclick="switchGender('pull','f')">👩 女性</button>
+    <button class="gender-btn" onclick="switchGender('pull','m')">👨 男性</button>
+  </div>
+
+  <!-- PULL FEMALE -->
+  <div id="pull-f">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">Step 1</div>
+          <div class="step-goal">・ヘッド(裏声)を見つける / チェスト(地声)を削減する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C#4〜G5</td><td class="tool-cell">WOO/WEE/WOH/GOO/GEE/GOH Hooty — マイケルジャクソン/ミッキー</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">リップロール/ハミング ポルタメント</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 リップロール 鼻摘んで</td></tr>
+            <tr><td class="range-cell">C#4〜G5</td><td class="tool-cell">Broken リップロール 鼻摘んで</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 Hooty GEE</td></tr>
+            <tr><td class="range-cell">C#4〜G5</td><td class="tool-cell">1oct. rep Hooty GEE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">Step 2</div>
+          <div class="step-goal">・チェスト(地声)を削減する / チェスト⇄ヘッド</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 Hooty GOO(ぐ)</td></tr>
+            <tr><td class="range-cell">C#4〜G5</td><td class="tool-cell">1oct. rep Hooty GOO(ぐ)</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 Hooty BOH(ぼ)</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 Hooty BUB(ば)</td></tr>
+            <tr><td class="range-cell">F3〜G5</td><td class="tool-cell">1.5 Hooty MUM(ま)</td></tr>
+            <tr><td class="range-cell">C#4〜G5</td><td class="tool-cell">Broken GEE 鼻摘んで</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">1stブリッジで重くならないように監視 ← かなり重要</div>
+      </div>
+    </div>
+
+    <div class="song-section">
+      <div class="song-header" onclick="toggleStep(this)">
+        <span>🎵</span>
+        <div class="song-title-hd">Step 3 — 選曲</div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <div class="song-grid">
+          <div class="song-col">
+            <h4>👩 女性</h4>
+            <div class="song-item"><span class="step-label">S1</span>NAO/HY</div>
+            <div class="song-item"><span class="step-label">S1</span>Flavor of Life/宇多田ヒカル</div>
+            <div class="song-item"><span class="step-label">S1</span>Jupiter/平原綾香</div>
+            <div class="song-item"><span class="step-label s2">S2</span>Automatic/宇多田ヒカル</div>
+            <div class="song-item"><span class="step-label s2">S2</span>夜に駆ける/YOASOBI</div>
+            <div class="song-item"><span class="step-label s2">S2</span>明日が来るなら/JUJU</div>
+            <div class="song-item"><span class="step-label s2">S2</span>EVERYTHING(転調前)/MISIA</div>
+            <div class="song-item"><span class="step-label s2">S2</span>逢いたくて今/MISIA</div>
+          </div>
+          <div class="song-col">
+            <h4>👨 男性</h4>
+            <div class="song-item"><span class="step-label">S1</span>LEMON/米津玄師</div>
+            <div class="song-item"><span class="step-label">S1</span>死ぬのがいいわ1番/藤井風</div>
+            <div class="song-item"><span class="step-label">S1</span>全力少年/スキマスイッチ（超スロー）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>猫/DISH//</div>
+            <div class="song-item"><span class="step-label s2">S2</span>ただ会いたくて/EXILE</div>
+            <div class="song-item"><span class="step-label s2">S2</span>蕾/コブクロ</div>
+            <div class="song-item"><span class="step-label s2">S2</span>まちがいさがし/菅田将暉（サビはスロー）</div>
+            <div class="song-item"><span class="step-label s2">S2</span>家族になろうよ/福山雅治</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sensei-box">
+      <h3>🧠 さやかさんの頭の中（プル男子）</h3>
+      <div style="font-size:0.82rem; margin-bottom:10px;">まず <strong>リップバブルやってから</strong> → 母音: i / 子音: g / スタート音: C3 / スケール: 1.5</div>
+      <div class="flow-row">
+        <div class="flow-box ok">成功 →<br><small>喉頭を落とす/子音を変える/母音を変える</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">次の目標：1オクターブ往来<br>喉頭を落とす方向性<br>より滑らかに繋げる</div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box ng">NG → 原因<br><small>1.5スケールが難しすぎる/コンセプトを理解してない<br>共鳴腔の操作下手/ポルタメントで行き来</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box ng">NG → 別手段<br><small>モノマネ/ロジックを説明/<br>HVとCVの確認</small></div>
+      </div>
+    </div>
+  </div><!-- /pull-f -->
+
+  <!-- PULL MALE -->
+  <div id="pull-m" style="display:none">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">Step 1</div>
+          <div class="step-goal">・ヘッド(裏声)を見つける / チェスト(地声)を削減する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F#3〜C#(Db)5</td><td class="tool-cell">WOO/WEE/WOH/GOO/GEE/GOH Hooty — マイケルジャクソン/ミッキー</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">リップロール/ハミング ポルタメント</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 リップロール 鼻摘んで</td></tr>
+            <tr><td class="range-cell">F#3〜C#(Db)5</td><td class="tool-cell">Broken リップロール 鼻摘んで</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 Hooty GEE</td></tr>
+            <tr><td class="range-cell">F#3〜C#(Db)5</td><td class="tool-cell">1oct. rep Hooty GEE</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">Step 2</div>
+          <div class="step-goal">・チェスト(地声)を削減する / チェスト⇄ヘッド</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 Hooty GOO(ぐ)</td></tr>
+            <tr><td class="range-cell">F#3〜C#(Db)5</td><td class="tool-cell">1oct. rep Hooty GOO(ぐ)</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 Hooty BOH(ぼ)</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 Hooty BUB(ば)</td></tr>
+            <tr><td class="range-cell">C3〜C#(Db)5</td><td class="tool-cell">1.5 Hooty MUM(ま)</td></tr>
+            <tr><td class="range-cell">F#3〜C#(Db)5</td><td class="tool-cell">Broken GEE 鼻摘んで</td></tr>
+          </tbody>
+        </table>
+        <div class="caution-box">1stブリッジで重くならないように監視 ← かなり重要</div>
+      </div>
+    </div>
+  </div><!-- /pull-m -->
+
+</div><!-- /panel-pull -->
+
+
+<!-- ===== LIGHT CHEST PANEL ===== -->
+<div id="panel-light" class="panel active">
+
+  <div class="voice-header">
+    <h2>🌟 ライトチェスト</h2>
+    <div>声帯閉鎖が弱い・薄い / 音量が小さい / 音程がシャープする</div>
+    <div class="voice-meta">
+      <span class="badge">脆弱型 / 過緊張型</span>
+      <span class="badge">母音: あ・え（広）</span>
+      <span class="badge">子音: 有声子音</span>
+      <span class="badge">スケール: 5 tone</span>
+      <span class="badge warning">⚠️ 息で声が出る → 声帯を積極的に使う → ✗</span>
+      <span class="badge note">🗒 歌声と話し声が違う場合はイメージを変える方が早い</span>
+    </div>
+  </div>
+
+  <div class="gender-selector">
+    <button class="gender-btn active" onclick="switchGender('light','f')">👩 女性</button>
+    <button class="gender-btn" onclick="switchGender('light','m')">👨 男性</button>
+  </div>
+
+  <!-- Degree selector -->
+  <div class="gender-selector" style="margin-top:-8px;">
+    <button class="gender-btn active" onclick="switchDegree('heavy')" id="degree-heavy">重度</button>
+    <button class="gender-btn" onclick="switchDegree('light2')" id="degree-light2">軽度</button>
+  </div>
+
+  <!-- LIGHT FEMALE HEAVY -->
+  <div id="light-f-heavy">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">重度 Step 1</div>
+          <div class="step-goal">・チェスト(地声)を見つける / 強化する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">ベロ出しあっあっあーなど何してもOK（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">ストロー（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あっあっあー</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あ</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG(ガ)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">重度 Step 2</div>
+          <div class="step-goal">・チェスト(地声)に戻れるか / 声帯閉鎖の強化</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜C#5(G#4)</td><td class="tool-cell">あっあっあー 1oct.</td></tr>
+            <tr><td class="range-cell">F3〜C#5(G#4)</td><td class="tool-cell">あっあっあー 1oct.ダウン (Repでも)</td></tr>
+            <tr><td class="range-cell">F3〜C#5(G#4)</td><td class="tool-cell">できれば、吸気発声 首振りながら</td></tr>
+            <tr><td class="range-cell">F3〜C#5(G#4)</td><td class="tool-cell">できれば、ボーカルフライ(呼気) 首振りながら</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step3" onclick="toggleStep(this)">
+        <div class="step-number">3</div>
+        <div>
+          <div class="step-title">重度 Step 3</div>
+          <div class="step-goal">・チェスト(地声)を保てるか / 抜けて帰ってこれるか</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C#4(F3まで戻る)〜2nd</td><td class="tool-cell">1oct. あ</td></tr>
+            <tr><td class="range-cell">C#4(F3まで戻る)〜2nd</td><td class="tool-cell">1oct. GUG(が)</td></tr>
+            <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">1.5 あっあっあ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!-- /light-f-heavy -->
+
+  <!-- LIGHT FEMALE LIGHT -->
+  <div id="light-f-light2" style="display:none">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">軽度 Step 1</div>
+          <div class="step-goal">・チェスト(地声)に戻れるか / 声帯閉鎖の強化</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">あっあっあっ、ストロー（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン あっあっあっ</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌出して5トーン あ</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">吸気発声・ボーカルフライ（からの5トーン あ）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">軽度 Step 2</div>
+          <div class="step-goal">・チェスト(地声)を保てるか / 抜けて帰ってこれるか</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">舌挟んで鼻摘んで 1.5 ば</td></tr>
+            <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">1.5 ストロー</td></tr>
+            <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">舌挟んで鼻摘んで 1.5 ば 違いを確認</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン ストロー</td></tr>
+            <tr><td class="range-cell">F3〜C#5</td><td class="tool-cell">1oct.リピート 舌挟んで ば</td></tr>
+            <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">1.5 MUM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!-- /light-f-light2 -->
+
+  <!-- LIGHT MALE HEAVY -->
+  <div id="light-m-heavy" style="display:none">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">重度 Step 1</div>
+          <div class="step-goal">・チェスト(地声)を見つける / 強化する</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">ベロ出しあっあっあーなど何してもOK（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">ストロー（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出して5トーン あっあっあー</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出して5トーン あ</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">5トーン GUG(ガ)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">重度 Step 2</div>
+          <div class="step-goal">・チェスト(地声)に戻れるか / 声帯閉鎖の強化</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell"></td><td class="tool-cell">あっあっあー 1oct.</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">あっあっあー 1oct.ダウン (Repでも)</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">できれば、吸気発声 首振りながら</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">できれば、ボーカルフライ(呼気) 首振りながら</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step3" onclick="toggleStep(this)">
+        <div class="step-number">3</div>
+        <div>
+          <div class="step-title">重度 Step 3</div>
+          <div class="step-goal">・チェスト(地声)を保てるか / 抜けて帰ってこれるか</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell"></td><td class="tool-cell">1oct. AH(あ)</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1oct. GUG(が)</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1.5 あっあっあ</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!-- /light-m-heavy -->
+
+  <!-- LIGHT MALE LIGHT -->
+  <div id="light-m-light2" style="display:none">
+    <div class="step-section">
+      <div class="step-header" onclick="toggleStep(this)">
+        <div class="step-number">1</div>
+        <div>
+          <div class="step-title">軽度 Step 1</div>
+          <div class="step-goal">・チェスト(地声)に戻れるか / 声帯閉鎖の強化</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell"></td><td class="tool-cell">あっあっあっ、ストロー（音程はこの範疇なら自由）</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">5トーン あっあっあっ</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">舌出して5トーン あ</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">5トーン GUG</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">吸気発声・ボーカルフライ（からの5トーン あ）</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <div class="step-header step2" onclick="toggleStep(this)">
+        <div class="step-number">2</div>
+        <div>
+          <div class="step-title">軽度 Step 2</div>
+          <div class="step-goal">・チェスト(地声)を保てるか / 抜けて帰ってこれるか</div>
+        </div>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="step-body">
+        <table class="ex-table">
+          <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell"></td><td class="tool-cell">舌挟んで鼻摘んで 1.5 ば</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1.5 ストロー</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">舌挟んで鼻摘んで 1.5 ば 違いを確認</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">5トーン ストロー</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1oct.リピート 舌挟んで ば</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1.5 MUM</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div><!-- /light-m-light2 -->
+
+  <!-- Song list for Light Chest -->
+  <div class="song-section">
+    <div class="song-header" onclick="toggleStep(this)">
+      <span>🎵</span>
+      <div class="song-title-hd">Step 3 — 選曲</div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div class="song-grid">
+        <div class="song-col">
+          <h4>👩 女性</h4>
+          <div class="song-item"><span class="step-label">S1</span>Story/AI</div>
+          <div class="song-item"><span class="step-label">S1</span>Let it go（サビ前まで）/May.J</div>
+          <div class="song-item"><span class="step-label">S1</span>春よ、こい/ユーミン</div>
+          <div class="song-item"><span class="step-label">S1</span>地上の星/中島みゆき</div>
+          <div class="song-item"><span class="step-label s2">S2</span>守ってあげたい/ユーミン</div>
+          <div class="song-item"><span class="step-label s2">S2</span>EVERYTHING/MISIA</div>
+          <div class="song-item"><span class="step-label s2">S2</span>駅/竹内まりや</div>
+        </div>
+        <div class="song-col">
+          <h4>👨 男性</h4>
+          <div class="song-item"><span class="step-label">S1</span>まちがいさがし（サビ前まで）/菅田将暉</div>
+          <div class="song-item"><span class="step-label">S1</span>LEMON（サビ前まで）/米津玄師</div>
+          <div class="song-item"><span class="step-label">S1</span>桜坂/福山雅治</div>
+          <div class="song-item"><span class="step-label">S1</span>少年時代/井上陽水</div>
+          <div class="song-item"><span class="step-label s2">S2</span>メロディー/玉置浩二</div>
+          <div class="song-item"><span class="step-label s2">S2</span>桜/森山直太朗</div>
+          <div class="song-item"><span class="step-label s2">S2</span>蕾/コブクロ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /panel-light -->
+
+<!-- ===== TOOLS PANEL ===== -->
+<div id="panel-tools" class="panel">
+
+  <div class="voice-header">
+    <h2>🔧 ツール辞典</h2>
+    <div>みんなで作ったあんちょこ — カテゴリ別エクササイズ集</div>
+  </div>
+
+  <!-- Search box -->
+  <div style="margin-bottom:14px;">
+    <input type="text" id="tool-search" oninput="filterTools()" placeholder="🔍 キーワードで検索..." style="width:100%;padding:12px 16px;border:2px solid var(--pink-light);border-radius:12px;font-size:0.9rem;font-family:'Noto Sans JP',sans-serif;outline:none;background:white;">
+  </div>
+
+  <div id="tools-list">
+
+    <!-- 声帯閉鎖関連 -->
+    <div class="tool-cat" data-cat="声帯閉鎖関連">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🔴</span>
+        <span class="tool-cat-title">声帯閉鎖関連</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="ハミング/ギシギシハミング">ハミング / ギシギシハミング</div>
+          <div class="tool-item" data-text="Cry 声帯分厚め">Cry（声帯分厚め）</div>
+          <div class="tool-item" data-text="犬にダメ!!">犬にダメ!!</div>
+          <div class="tool-item" data-text="咳をする直前">咳をする直前</div>
+          <div class="tool-item" data-text="お腹を殴られる直前のフッとおなかかためる感じ">お腹を殴られる直前のフッとおなかかためる感じ</div>
+          <div class="tool-item" data-text="重い物を持ち上げる時 力んだ時">重い物を持ち上げる時、力んだ時</div>
+          <div class="tool-item" data-text="グロッタル">グロッタル</div>
+          <div class="tool-item" data-text="ストロー チェスト出してから">ストロー（チェスト出してから）</div>
+          <div class="tool-item" data-text="ペットボトルぶくぶく チェスト出してから">ペットボトルぶくぶく（チェスト出してから）</div>
+          <div class="tool-item" data-text="エッジボイス">エッジボイス</div>
+          <div class="tool-item" data-text="舌出し ティッシュで引っ張る">舌出し（ティッシュで引っ張る）</div>
+          <div class="tool-item" data-text="BA 狭窄はむかない ネイザルの人に向く 声を前に出したい時">BA（狭窄はむかない、ネイザルの人に向く、声を前に出したい時）</div>
+          <div class="tool-item" data-text="鼻つまんでGA">鼻つまんでGA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 声帯を伸長させる -->
+    <div class="tool-cat" data-cat="声帯を伸長させる">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🟠</span>
+        <span class="tool-cat-title">声帯を伸長させる</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="ハミング サイレン">ハミング / サイレン</div>
+          <div class="tool-item" data-text="Cry">Cry</div>
+          <div class="tool-item" data-text="ハイラリ CTを働かせる">ハイラリ（CTを働かせる）</div>
+          <div class="tool-item" data-text="エ母音">エ母音</div>
+          <div class="tool-item" data-text="Ne Na Ney">Ne / Na / Neyも好き</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ヒーリングエクササイズ -->
+    <div class="tool-cat" data-cat="ヒーリングエクササイズ">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🟢</span>
+        <span class="tool-cat-title">ヒーリングエクササイズ</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="Fee Fa Wo タコの口 フート">Fee / Fa / Woなど（タコの口・フート）</div>
+          <div class="tool-item" data-text="ペットボトルぶくぶく">ペットボトルぶくぶく</div>
+          <div class="tool-item" data-text="ストロー">ストロー</div>
+          <div class="tool-item" data-text="タピオカストロー">タピオカストロー</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 舌の過緊張を取る -->
+    <div class="tool-cat" data-cat="舌の過緊張を取る">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🟡</span>
+        <span class="tool-cat-title">舌の過緊張を取る</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="オトガイ筋 圧死">オトガイ筋 圧死</div>
+          <div class="tool-item" data-text="ティッシュで舌を引き出す">ティッシュで舌を引き出す</div>
+          <div class="tool-item" data-text="二重母音 Ney Wey">二重母音「Ney」「Wey」</div>
+          <div class="tool-item" data-text="舌を噛んでマッサージ">舌を噛んでマッサージ</div>
+          <div class="tool-item" data-text="物理的に舌をモミモミする">物理的に舌をモミモミする</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 仮声帯圧迫を取る -->
+    <div class="tool-cat" data-cat="仮声帯圧迫を取る">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🔵</span>
+        <span class="tool-cat-title">仮声帯圧迫を取る</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="ため息">ため息</div>
+          <div class="tool-item" data-text="はっはっはー ひっひっひー 柔らかく笑う">はっはっはー / ひっひっひー（柔らかく笑う）</div>
+          <div class="tool-item" data-text="へーい">へーい</div>
+          <div class="tool-item" data-text="ボーカルフライ 息吐いて底から 舌を出して口を閉じてエッジボイス">ボーカルフライ ← 出来ない時は①息吐いて底から、②舌を出して口を閉じてエッジボイス⇄舌を出して口を開けてエッジボイスを交互に</div>
+          <div class="tool-item" data-text="F P W子音 エアフロー">F・P・W子音（エアフロー）</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ネイザル・ファリンジャル -->
+    <div class="tool-cat" data-cat="ネイザル ファリンジャル">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🟣</span>
+        <span class="tool-cat-title">ネイザル・ファリンジャル</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="B子音で舌出し鼻つまみ 軟蓋を上げて鼻にいかないようにする 過緊張がある場合は向かない">B子音で舌出し鼻つまみ👃（軟蓋を上げて鼻にいかないようにする）※過緊張がある場合は向かない</div>
+          <div class="tool-item" data-text="んが んで鼻に入って がで鼻から抜ける を繰り返す">んが（"ん"で鼻に入って"が"で鼻から抜ける）を繰り返す</div>
+          <div class="tool-item" data-text="声帯を分厚く使うエクササイズをやる">声帯を分厚く使うエクササイズをやる</div>
+          <div class="tool-item" data-text="水の中に入ったつもりで鼻つまんでガ">水の中に入ったつもりで鼻つまんでガ</div>
+          <div class="tool-item" data-text="臭い上司がいて喋らないといけない時の感じ 臭いけど失礼になるから鼻はつまめない でも鼻を閉じたい">臭い上司がいて喋らないといけない時の感じ（臭いけど失礼になるから鼻はつまめない、でも鼻を閉じたい）</div>
+          <div class="tool-item" data-text="K ケイケイなど 調音部位が中舌と硬口蓋になるのでネイザルがちの発声に有効 声帯を使わないで音響アプローチしたい時">K（ケイケイなど）— 調音部位が中舌と硬口蓋になるのでネイザルがちの発声に有効 ← 声帯を使わないで音響アプローチしたい時</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ハイラリ -->
+    <div class="tool-cat" data-cat="ハイラリ">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">⬆️</span>
+        <span class="tool-cat-title">ハイラリ</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="フートエクササイズ">フートエクササイズ</div>
+          <div class="tool-item" data-text="ハミング">ハミング</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ヘッドボイスを出す -->
+    <div class="tool-cat" data-cat="ヘッドボイスを出す">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">👑</span>
+        <span class="tool-cat-title">ヘッドボイスを出す</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="ゲリセット">ゲリセット💩</div>
+          <div class="tool-item" data-text="前に頭下に向けて倒して ゆらして力をぬいて 頭をさげたまま Fu-Ho と言わす">前に（頭下に向けて）倒して、ゆらして力をぬいて、頭をさげたまま Fu~Ho~ と言わす</div>
+          <div class="tool-item" data-text="ハミング サイレン">ハミング、サイレン</div>
+          <div class="tool-item" data-text="テンション上がった時">⬇️（テンション上がった時の）</div>
+          <div class="tool-item" data-text="ミッキーマウスのまね">ミッキーマウスのまね</div>
+          <div class="tool-item" data-text="ないしょ話し 声は出てる状態 遠くの人へないしょ話し">ないしょ話し（声は出てる状態）→ 遠くの人へないしょ話し</div>
+          <div class="tool-item" data-text="高い声を出す">高い声を出す</div>
+          <div class="tool-item" data-text="喉押す">喉押す</div>
+          <div class="tool-item" data-text="ストローが吹けないほど脆弱な可能性がある場合はお腹に力を入れると出る場合がある">ストローが吹けないほど脆弱な可能性がある場合はお腹に力を入れると出る場合がある</div>
+          <div class="tool-item" data-text="軟蓋上げる nGa ビックリして息吸うなどで上がった状態を意識">軟蓋上げる（nGa、ビックリして息吸うなどで上がった状態を意識）</div>
+          <div class="tool-item" data-text="チェスト大事 ロールアウトでGaが言えるくらいになるといい">チェスト大事（ロールアウトでGaが言えるくらいになるといい）</div>
+          <div class="tool-item" data-text="hu~ wo~">hu~、wo~</div>
+          <div class="tool-item" data-text="甲状軟骨を倒すと上に持って行きやすくなる">甲状軟骨を倒すと上に持って行きやすくなる</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 甲状軟骨を倒す -->
+    <div class="tool-cat" data-cat="甲状軟骨を倒す">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">↗️</span>
+        <span class="tool-cat-title">甲状軟骨を倒す</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div class="tool-item" data-text="Cry">Cry</div>
+          <div class="tool-item" data-text="クレヨンしんちゃん">クレヨンしんちゃん</div>
+          <div class="tool-item" data-text="首の皮引っ張る">首の皮引っ張る</div>
+          <div class="tool-item" data-text="クゥーンと仔犬が鳴く感じ">クゥーンと仔犬が鳴く感じ</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tools-list -->
+</div><!-- /panel-tools -->
+
+<!-- ===== MAPPING PANEL ===== -->
+<div id="panel-map" class="panel">
+
+  <div class="voice-header">
+    <h2>🗺️ エクササイズ マッピング</h2>
+    <div>3つの方向から調べられます</div>
+  </div>
+
+  <!-- MODE SELECT -->
+  <div id="map-mode-select">
+    <button class="map-mode-btn" onclick="selectMode('voicetype')">
+      <div class="map-mode-icon">🎤</div>
+      <div class="map-mode-title">ボイスタイプから</div>
+      <div class="map-mode-desc">ライトチェスト・プル・フリップ<br>→ 部位 → エクササイズ</div>
+    </button>
+    <button class="map-mode-btn" onclick="selectMode('tool')">
+      <div class="map-mode-icon">🔍</div>
+      <div class="map-mode-title">子音・ツールから</div>
+      <div class="map-mode-desc">「KEEって何に効く？」<br>「ストローはなぜ使う？」</div>
+    </button>
+    <button class="map-mode-btn" onclick="selectMode('symptom')">
+      <div class="map-mode-icon">🚨</div>
+      <div class="map-mode-title">症状・現象から</div>
+      <div class="map-mode-desc">「喉が閉まってる」<br>「ひっくり返る」→ 何を打つ？</div>
+    </button>
+  </div>
+
+  <!-- MODE: VOICE TYPE -->
+  <div id="map-vt-wrap" style="display:none;">
+    <div class="map-nav-row"><button class="map-back-btn" onclick="selectMode(null)">← モード選択へ</button></div>
+    <div id="map-step1">
+      <div class="map-step-label">① ボイスタイプを選んでください</div>
+      <div class="map-type-grid">
+        <button class="map-type-btn" onclick="selectVoiceType('light')">🌟<br>ライトチェスト</button>
+        <button class="map-type-btn" onclick="selectVoiceType('pull')">💪<br>プル</button>
+        <button class="map-type-btn" onclick="selectVoiceType('flip')">🔄<br>フリップ</button>
+      </div>
+    </div>
+    <div id="map-step2" style="display:none;">
+      <div class="map-nav-row">
+        <button class="map-back-btn" onclick="resetMap()">← 戻る</button>
+        <div id="map-selected-type" class="map-breadcrumb"></div>
+      </div>
+      <div class="map-step-label">② 何が気になりますか？</div>
+      <div id="map-parts-grid" class="map-parts-grid"></div>
+    </div>
+    <div id="map-step3" style="display:none;">
+      <div class="map-nav-row">
+        <button class="map-back-btn" onclick="backToParts()">← 戻る</button>
+        <div id="map-selected-part" class="map-breadcrumb"></div>
+      </div>
+      <div class="map-step-label">③ エクササイズを選んでください</div>
+      <div id="map-ex-list"></div>
+    </div>
+    <div id="map-step4" style="display:none;">
+      <div class="map-nav-row"><button class="map-back-btn" onclick="backToEx()">← 戻る</button></div>
+      <div id="map-ex-detail"></div>
+    </div>
+  </div>
+
+  <!-- MODE: TOOL/CONSONANT -->
+  <div id="map-tool-wrap" style="display:none;">
+    <div class="map-nav-row"><button class="map-back-btn" onclick="selectMode(null)">← モード選択へ</button></div>
+    <div class="map-step-label">子音・ツールを選んでください</div>
+    <div class="map-tag-group">
+      <div class="map-tag-label">子音</div>
+      <div class="map-tags" id="map-consonant-tags"></div>
+    </div>
+    <div class="map-tag-group">
+      <div class="map-tag-label">ツール</div>
+      <div class="map-tags" id="map-tool-tags"></div>
+    </div>
+    <div id="map-tool-detail" style="display:none;">
+      <div class="map-nav-row" style="margin-top:16px;"><button class="map-back-btn" onclick="document.getElementById('map-tool-detail').style.display='none'">← 戻る</button></div>
+      <div id="map-tool-detail-content"></div>
+    </div>
+  </div>
+
+  <!-- MODE: SYMPTOM -->
+  <div id="map-symptom-wrap" style="display:none;">
+    <div class="map-nav-row"><button class="map-back-btn" onclick="selectMode(null)">← モード選択へ</button></div>
+    <div class="map-step-label">症状・現象を選んでください</div>
+    <div class="map-tags" id="map-symptom-tags"></div>
+    <div id="map-symptom-detail" style="display:none;">
+      <div class="map-nav-row" style="margin-top:16px;"><button class="map-back-btn" onclick="document.getElementById('map-symptom-detail').style.display='none'">← 戻る</button></div>
+      <div id="map-symptom-detail-content"></div>
+    </div>
+  </div>
+
+</div><!-- /panel-map -->
+
+<!-- ===== DIAGNOSIS PANEL ===== -->
+<div id="panel-diag" class="panel">
+
+  <div class="voice-header">
+    <h2>🎤 ボイスタイプ診断</h2>
+    <div>5トーンAhを歌って、気になった音と症状を記録しよう</div>
+  </div>
+
+  <!-- STEP INDICATOR -->
+  <div class="diag-steps">
+    <div class="diag-step active" id="dstep-ind-1">①性別</div>
+    <div class="diag-step-arrow">›</div>
+    <div class="diag-step" id="dstep-ind-2">②録音</div>
+    <div class="diag-step-arrow">›</div>
+    <div class="diag-step" id="dstep-ind-3">③鍵盤</div>
+    <div class="diag-step-arrow">›</div>
+    <div class="diag-step" id="dstep-ind-4">④結果</div>
+  </div>
+
+  <!-- STEP 1: GENDER -->
+  <div id="dstep-1" class="diag-panel-step">
+    <div class="diag-section-title">性別を選んでください</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+      <button class="diag-gender-btn" onclick="selectDiagGender('f')">👩<br><span>女性</span><br><small>F3〜C6</small></button>
+      <button class="diag-gender-btn" onclick="selectDiagGender('m')">👨<br><span>男性</span><br><small>A2〜F5</small></button>
+    </div>
+  </div>
+
+  <!-- STEP 2: RECORD -->
+  <div id="dstep-2" class="diag-panel-step" style="display:none;">
+    <div class="diag-nav-row">
+      <button class="diag-back-btn" onclick="diagGoTo(1)">← 戻る</button>
+      <span id="diag-gender-label" class="diag-breadcrumb"></span>
+    </div>
+    <div class="diag-section-title">5トーン Ah を歌ってください</div>
+    <div class="diag-instruction">
+      <div class="diag-inst-note">🎵 ド・レ・ミ・ファ・ソ・ファ・ミ・レ・ドの5トーンで「あー」と歌う</div>
+      <div class="diag-inst-note">📍 スタート音：<span id="diag-start-note" style="font-weight:700;color:var(--pink);"></span></div>
+      <div class="diag-inst-note">🔁 半音ずつ上げながら複数回やってみよう</div>
+    </div>
+    <div style="text-align:center;margin:20px 0;">
+      <button id="diag-rec-btn" class="diag-rec-button" onclick="toggleRecording()">
+        <span id="diag-rec-icon">🎤</span>
+        <span id="diag-rec-label">録音開始</span>
+      </button>
+    </div>
+    <div id="diag-rec-status" style="display:none;">
+      <div class="diag-audio-bars">
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+        <div class="bar"></div><div class="bar"></div>
+      </div>
+      <div id="diag-analysis-result" style="margin-top:12px;"></div>
+    </div>
+    <div style="text-align:center;margin-top:16px;">
+      <button class="diag-next-btn" onclick="diagGoTo(3)">録音をスキップして次へ →</button>
+    </div>
+    <div id="diag-rec-next" style="display:none;text-align:center;margin-top:8px;">
+      <button class="diag-next-btn" onclick="diagGoTo(3)">次へ → 鍵盤で記録する</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: PIANO -->
+  <div id="dstep-3" class="diag-panel-step" style="display:none;">
+    <div class="diag-nav-row">
+      <button class="diag-back-btn" onclick="diagGoTo(2)">← 戻る</button>
+      <span class="diag-breadcrumb">気になった音を記録</span>
+    </div>
+    <div class="diag-section-title">どの音で気になりましたか？</div>
+    <div class="diag-instruction">
+      <div class="diag-inst-note">① 気になった鍵盤をタップ → ② 症状を選ぶ</div>
+    </div>
+
+    <!-- Legend -->
+    <div class="piano-legend">
+      <span class="pl-item"><span class="pl-dot" style="background:#c084fc;"></span>Low Chest</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#818cf8;"></span>High Chest</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#38bdf8;"></span>1st Bridge</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#34d399;"></span>Middle/2nd Bridge</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#fb923c;"></span>Head/3rd Bridge</span>
+    </div>
+
+    <!-- Piano keyboard -->
+    <div class="piano-wrap">
+      <div class="piano-scroll">
+        <div id="piano-keys" class="piano-keys"></div>
+      </div>
+    </div>
+
+    <!-- Symptom selector (appears after key tap) -->
+    <div id="symptom-selector" style="display:none;margin-top:16px;">
+      <div class="diag-section-title" style="font-size:0.85rem;">
+        <span id="selected-note-label" style="color:var(--pink);"></span> で何が起きましたか？（複数選択可）
+      </div>
+      <div class="symptom-chips">
+        <button class="symptom-chip" onclick="toggleSymptom(this,'flip')">🔄 ひっくり返る</button>
+        <button class="symptom-chip" onclick="toggleSymptom(this,'pull')">😤 詰まる・張り上げる</button>
+        <button class="symptom-chip" onclick="toggleSymptom(this,'narrow')">😬 狭窄する</button>
+        <button class="symptom-chip" onclick="toggleSymptom(this,'light')">💨 息っぽい・抜ける</button>
+        <button class="symptom-chip" onclick="toggleSymptom(this,'heavy')">🏋️ 重くなる</button>
+        <button class="symptom-chip" onclick="toggleSymptom(this,'sharp')">🎵 シャープする</button>
+      </div>
+      <button class="diag-next-btn" style="margin-top:12px;" onclick="addNoteRecord()">この音を記録する ✓</button>
+    </div>
+
+    <!-- Recorded notes -->
+    <div id="recorded-notes" style="margin-top:16px;"></div>
+
+    <div style="text-align:center;margin-top:20px;">
+      <button class="diag-next-btn" onclick="calcDiagnosis()">診断する →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: RESULT -->
+  <div id="dstep-4" class="diag-panel-step" style="display:none;">
+    <div class="diag-nav-row">
+      <button class="diag-back-btn" onclick="diagGoTo(3)">← 戻る</button>
+      <span class="diag-breadcrumb">診断結果</span>
+    </div>
+    <div id="diag-result-content"></div>
+    <div style="text-align:center;margin-top:20px;">
+      <button class="diag-next-btn" onclick="resetDiag()">もう一度診断する</button>
+    </div>
+  </div>
+
+</div><!-- /panel-diag -->
+
+</div><!-- /content -->
+
+<style>
+.tool-cat {
+  background: white;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+}
+.tool-cat-header {
+  background: linear-gradient(90deg, #37474f 0%, #263238 100%);
+  color: white;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.tool-cat-icon { font-size: 1.1rem; }
+.tool-cat-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex: 1;
+}
+.tool-items { padding: 6px 0; }
+.tool-item {
+  padding: 10px 16px;
+  font-size: 0.84rem;
+  border-bottom: 1px solid #f5f5f5;
+  line-height: 1.6;
+  color: #333;
+}
+.tool-item:last-child { border-bottom: none; }
+.tool-item:hover { background: var(--pink-pale); }
+.tool-item.hidden { display: none; }
+#tool-search:focus { border-color: var(--pink); }
+
+/* MAPPING */
+.map-step-label {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 12px;
+}
+.map-type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.map-type-btn {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 14px;
+  padding: 16px 8px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.6;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.map-type-btn:hover { background: var(--pink-pale); border-color: var(--pink); }
+.map-parts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.map-part-btn {
+  background: white;
+  border: 2px solid var(--blue-mid);
+  border-radius: 14px;
+  padding: 14px 10px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.6;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.map-part-btn:hover { background: var(--blue-pale); border-color: #5bb8d4; }
+.map-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.map-back-btn {
+  background: none;
+  border: 1px solid var(--pink-light);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  color: var(--pink);
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== DIAGNOSIS ===== */
+.diag-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.diag-step {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background: #f0f0f0;
+  color: #999;
+  transition: all 0.2s;
+}
+.diag-step.active { background: var(--pink); color: white; }
+.diag-step.done { background: var(--pink-light); color: var(--pink); }
+.diag-step-arrow { color: #ccc; font-size: 1rem; }
+.diag-panel-step { animation: fadeIn 0.2s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.diag-section-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.diag-gender-btn {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 16px;
+  padding: 20px 10px;
+  cursor: pointer;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 2rem;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  width: 100%;
+}
+.diag-gender-btn span { display: block; font-size: 0.95rem; font-weight: 700; margin-top: 6px; }
+.diag-gender-btn small { display: block; font-size: 0.72rem; color: var(--gray); margin-top: 2px; }
+.diag-gender-btn:hover { background: var(--pink-pale); border-color: var(--pink); }
+.diag-nav-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.diag-back-btn {
+  background: none;
+  border: 1px solid var(--pink-light);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  color: var(--pink);
+  cursor: pointer;
+}
+.diag-breadcrumb {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--pink);
+}
+.diag-instruction {
+  background: var(--blue-pale);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+}
+.diag-inst-note {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  color: var(--dark);
+}
+.diag-rec-button {
+  background: var(--pink);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  font-size: 0.85rem;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(233,30,140,0.35);
+  transition: all 0.2s;
+  margin: 0 auto;
+}
+.diag-rec-button.recording {
+  background: #dc2626;
+  animation: pulse 1s infinite;
+}
+@keyframes pulse { 0%,100% { box-shadow: 0 4px 20px rgba(220,38,38,0.4); } 50% { box-shadow: 0 4px 30px rgba(220,38,38,0.7); } }
+.diag-audio-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 40px;
+}
+.bar {
+  width: 6px;
+  background: var(--pink);
+  border-radius: 3px;
+  animation: barAnim 0.6s ease-in-out infinite;
+  height: 8px;
+}
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.15s; }
+.bar:nth-child(6) { animation-delay: 0.25s; }
+.bar:nth-child(7) { animation-delay: 0.05s; }
+.bar:nth-child(8) { animation-delay: 0.35s; }
+@keyframes barAnim { 0%,100% { height: 8px; } 50% { height: 30px; } }
+.diag-analysis-card {
+  background: white;
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+.diag-analysis-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 0.82rem;
+}
+.diag-analysis-row:last-child { border-bottom: none; }
+.diag-analysis-bar-wrap {
+  width: 60%;
+  background: #f0f0f0;
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+.diag-analysis-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: var(--pink);
+  transition: width 0.8s ease;
+}
+.diag-next-btn {
+  background: var(--pink);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.diag-next-btn:hover { opacity: 0.85; }
+/* PIANO */
+.piano-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.pl-item { display: flex; align-items: center; gap: 4px; font-size: 0.72rem; color: var(--gray); }
+.pl-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.piano-wrap {
+  background: #1a1a2e;
+  border-radius: 14px;
+  padding: 12px 8px 16px;
+  margin-bottom: 8px;
+}
+.piano-scroll { overflow-x: auto; padding-bottom: 4px; }
+.piano-keys {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  height: 110px;
+  min-width: max-content;
+  padding: 0 4px;
+}
+.piano-key {
+  position: relative;
+  cursor: pointer;
+  border-radius: 0 0 6px 6px;
+  transition: all 0.1s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 5px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  user-select: none;
+}
+.piano-key.white {
+  width: 30px;
+  height: 100px;
+  border: 1px solid rgba(0,0,0,0.3);
+  z-index: 1;
+  color: #333;
+}
+.piano-key.black {
+  width: 20px;
+  height: 64px;
+  background: #222 !important;
+  color: white;
+  z-index: 2;
+  margin-left: -10px;
+  margin-right: -10px;
+  border-radius: 0 0 4px 4px;
+  font-size: 0.45rem;
+}
+.piano-key.white.selected { filter: brightness(0.85); outline: 2px solid var(--pink); }
+.piano-key.black.selected { filter: brightness(1.5); outline: 2px solid var(--pink); }
+.piano-key:active { filter: brightness(0.8); }
+.symptom-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.symptom-chip {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: var(--dark);
+}
+.symptom-chip.active { background: var(--pink); color: white; border-color: var(--pink); }
+.note-record-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+  font-size: 0.82rem;
+}
+.note-record-name { font-weight: 700; color: var(--pink); min-width: 40px; }
+.note-record-symptoms { display: flex; flex-wrap: wrap; gap: 4px; flex: 1; }
+.nrs { background: var(--pink-pale); color: var(--pink); border-radius: 8px; padding: 2px 8px; font-size: 0.72rem; font-weight: 700; }
+.note-record-del { color: #ccc; cursor: pointer; font-size: 1.1rem; margin-left: auto; }
+/* RESULT */
+.diag-result-type {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+  border-left: 5px solid var(--pink);
+}
+.diag-result-badge {
+  display: inline-block;
+  background: var(--pink);
+  color: white;
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.diag-result-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--pink);
+  margin-bottom: 8px;
+}
+.diag-ex-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-left: 3px solid var(--pink);
+}
+.diag-ex-name {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 5px;
+}
+.diag-ex-why { font-size: 0.8rem; line-height: 1.6; color: #444; }
+
+/* MAP MODES */
+#map-mode-select {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.map-mode-btn {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 16px;
+  padding: 16px 18px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  width: 100%;
+}
+.map-mode-btn:hover { background: var(--pink-pale); border-color: var(--pink); }
+.map-mode-icon { font-size: 1.8rem; flex-shrink: 0; }
+.map-mode-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+.map-mode-desc { font-size: 0.78rem; color: var(--gray); line-height: 1.5; }
+.map-tag-group { margin-bottom: 16px; }
+.map-tag-label {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gray);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.map-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.map-tag {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.map-tag:hover, .map-tag.active { background: var(--pink); color: white; border-color: var(--pink); }
+.map-result-card {
+  background: white;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 20px rgba(233,30,140,0.12);
+  border-left: 5px solid var(--pink);
+  margin-bottom: 12px;
+}
+.map-result-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--pink);
+  margin-bottom: 12px;
+}
+.map-result-section { margin-bottom: 12px; }
+.map-result-section h4 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 5px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.map-result-section p { font-size: 0.84rem; line-height: 1.7; color: #333; }
+.map-tool-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.map-tool-chip {
+  background: var(--pink-pale);
+  color: var(--pink);
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  border: 1px solid var(--pink-light);
+}
+
+.map-breadcrumb {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--pink);
+}
+.map-ex-btn {
+  display: block;
+  width: 100%;
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 10px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.map-ex-btn:hover { background: var(--pink-pale); border-color: var(--pink); }
+.map-detail-card {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(233,30,140,0.12);
+  border-left: 5px solid var(--pink);
+}
+.map-detail-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--pink);
+  margin-bottom: 14px;
+}
+.map-detail-section {
+  margin-bottom: 14px;
+}
+.map-detail-section h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.map-detail-section p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #333;
+}
+
+</style>
+
+<script>
+// Current state
+let currentLightGender = 'f';
+let currentLightDegree = 'heavy';
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const idx = ['light','pull','flip','tools','map','diag'].indexOf(name);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function filterTools() {
+  const q = document.getElementById('tool-search').value.trim().toLowerCase();
+  document.querySelectorAll('.tool-cat').forEach(cat => {
+    let anyVisible = false;
+    cat.querySelectorAll('.tool-item').forEach(item => {
+      const text = (item.dataset.text + item.textContent).toLowerCase();
+      const match = !q || text.includes(q);
+      item.classList.toggle('hidden', !match);
+      if (match) anyVisible = true;
+    });
+    const catName = cat.dataset.cat.toLowerCase();
+    if (q && catName.includes(q)) {
+      cat.querySelectorAll('.tool-item').forEach(i => { i.classList.remove('hidden'); anyVisible = true; });
+    }
+    cat.style.display = (anyVisible || !q) ? 'block' : 'none';
+    if (q) {
+      const body = cat.querySelector('.step-body');
+      if (body) body.style.maxHeight = '9999px';
+    }
+  });
+}
+
+function switchGender(panel, gender) {
+  const btns = document.querySelectorAll('#panel-' + panel + ' .gender-btn');
+  btns.forEach((b, i) => b.classList.toggle('active', (i === 0 && gender === 'f') || (i === 1 && gender === 'm')));
+  
+  if (panel === 'flip') {
+    document.getElementById('flip-f').style.display = gender === 'f' ? 'block' : 'none';
+    document.getElementById('flip-m').style.display = gender === 'm' ? 'block' : 'none';
+  } else if (panel === 'pull') {
+    document.getElementById('pull-f').style.display = gender === 'f' ? 'block' : 'none';
+    document.getElementById('pull-m').style.display = gender === 'm' ? 'block' : 'none';
+  } else if (panel === 'light') {
+    currentLightGender = gender;
+    updateLightView();
+  }
+}
+
+function switchDegree(degree) {
+  currentLightDegree = degree;
+  document.getElementById('degree-heavy').classList.toggle('active', degree === 'heavy');
+  document.getElementById('degree-light2').classList.toggle('active', degree === 'light2');
+  updateLightView();
+}
+
+function updateLightView() {
+  const combos = ['f-heavy', 'f-light2', 'm-heavy', 'm-light2'];
+  combos.forEach(c => {
+    document.getElementById('light-' + c).style.display = 
+      (c === currentLightGender + '-' + currentLightDegree) ? 'block' : 'none';
+  });
+}
+
+function toggleStep(header) {
+  header.classList.toggle('collapsed');
+  const body = header.nextElementSibling;
+  body.classList.toggle('collapsed');
+  if (!body.classList.contains('collapsed')) {
+    body.style.maxHeight = body.scrollHeight + 'px';
+  } else {
+    body.style.maxHeight = '0';
+  }
+}
+
+// Init: open all steps
+document.querySelectorAll('.step-body').forEach(b => {
+  b.style.maxHeight = b.scrollHeight + 'px';
+});
+
+
+// ===== MAPPING =====
+const mapData = {
+  light: {
+    label: '🌟 ライトチェスト',
+    parts: {
+      '声帯': {
+        icon: '🔴',
+        exercises: [
+          {
+            name: 'GUG（ガ）',
+            why: 'G は有声の強子音。子音を出す瞬間、声帯が反射的に強く閉じる。U は喉を自然に下げる母音なので仮声帯の締まりを防ぎながら閉鎖を強化できる。',
+            effect: '声帯閉鎖の感覚をつかむ。息っぽさが減り、音にハリが出てくる。',
+            ok: '音にハリが出て息っぽさが減ってきた',
+          },
+          {
+            name: '舌出し5トーンあ',
+            why: '舌を前に出しておくと喉の上昇が物理的にブロックされる。そのまま「あ」（広母音）を出すことでチェストを引き出しやすくなる。',
+            effect: '喉が上がらない状態でチェストの声質を安定させる。',
+            ok: '舌を引っ込めた時より声が前に出てハリが増した',
+          },
+          {
+            name: 'ストロー',
+            why: 'ストローで息を細く絞ると声道内の圧力が上がり、声帯が受動的に閉じやすくなる。自分で意識的に「閉じよう」としなくてよいため過緊張が起きにくい。',
+            effect: '力みなしで声帯閉鎖を体験させる。特に重度の人の最初の一歩として有効。',
+            ok: 'ストロー外しても少しハリが残る感覚がある',
+          },
+          {
+            name: 'エッジボイス',
+            why: '声帯をゆるゆるにしてガラガラ声を出すことで、声帯が「閉じる→開く→閉じる」のリズムに慣れる。声帯の存在を感じさせる入門エクササイズ。',
+            effect: '声帯の感覚認識。「声帯がどこにあるか」わかってない人への気づきを与える。',
+            ok: '喉の奥でぐるぐるした感覚が出てきた',
+          },
+          {
+            name: '吸気発声',
+            why: '息を吸いながら声を出すと声帯が吸気で強制的に引き寄せられて閉じる。意識的に閉じられない重度の人でも100%閉じる。',
+            effect: '声帯閉鎖の感覚の最終兵器。本当に弱い人専用。',
+            ok: '吸いながら声が出た。その感覚を呼気でも再現できそう',
+          },
+        ]
+      },
+      '舌': {
+        icon: '👅',
+        exercises: [
+          {
+            name: 'ティッシュで舌を引き出す',
+            why: '舌根が奥に引っ込むと喉が上がり声道が狭くなる。物理的に舌を前に引き出すことで舌根の緊張を強制リリース。',
+            effect: '舌根の過緊張を取り、声道を広げる。声が前に出やすくなる。',
+            ok: '舌を引っ張りながら声を出すと響きが変わった',
+          },
+          {
+            name: 'オトガイ筋 圧死',
+            why: '顎の下のオトガイ筋が硬いと舌骨が引っ張られて舌根が上がる。指で圧迫してほぐすことで連鎖的に舌の緊張が取れる。',
+            effect: '舌根・舌骨周りの過緊張を物理的に緩める。',
+            ok: '圧迫後に発声すると喉が楽になった',
+          },
+          {
+            name: '舌を噛んでマッサージ',
+            why: '舌を軽く噛みながら動かすことで舌の筋肉に固有感覚（自分の位置感覚）が生まれ、過緊張パターンがリセットされる。',
+            effect: '舌の緊張パターンを崩し、発声時の舌の自由度を上げる。',
+            ok: '舌が柔らかくなった感覚がある',
+          },
+          {
+            name: '二重母音 Ney / Wey',
+            why: 'N は舌先を上に使う子音、EY は舌が動く二重母音。舌を動かしながら歌う習慣をつけることで、固まった舌のパターンを崩す。',
+            effect: '舌の動きを声に組み込みながら過緊張を取る。',
+            ok: 'Ney と言う時に舌が動いて声が変わる感覚がある',
+          },
+        ]
+      },
+      '仮声帯': {
+        icon: '😤',
+        exercises: [
+          {
+            name: 'ため息',
+            why: '仮声帯は緊張・力みで締まる。ため息は体の緊張を全て抜く動作で、仮声帯が自動的に開く。最もシンプルなリリース方法。',
+            effect: '仮声帯の圧迫をリセットする。声が楽に出る状態を体験させる。',
+            ok: 'ため息後の声が普段より楽に出た',
+          },
+          {
+            name: 'はっはっはー / ひっひっひー（柔らかく笑う）',
+            why: '笑う動作は仮声帯を開く反射と連動している。「柔らかく」がポイントで、腹から大笑いするのではなく声帯だけを使う感覚。',
+            effect: '力まずに仮声帯を開いた状態で発声する感覚をつける。',
+            ok: '笑い声の延長で歌声が出た',
+          },
+          {
+            name: 'F・P・W子音（エアフロー）',
+            why: 'F/P/W は息が増える弱子音。声帯の閉鎖を緩める働きがある。仮声帯が締まっている人が閉鎖を強める子音（G/K）を使うとさらに締まるので、まずエアフロー系で開放させる。',
+            effect: '仮声帯と声帯の緊張を息で流しながら発声する。',
+            ok: 'F/W で始める音が出しやすくなった',
+          },
+        ]
+      },
+      '声道': {
+        icon: '🔊',
+        exercises: [
+          {
+            name: 'BA（バ）',
+            why: 'B は唇を使う有声子音で声帯閉鎖を強めつつ、A（あ）は広母音でチェストを引き出す。狭窄がない人・声を前に出したい時に有効。ネイザルの人には向かない。',
+            effect: '声を前方（唇方向）に集めながら閉鎖を強化する。',
+            ok: '声が顔の前の方に集まってきた感覚がある',
+          },
+          {
+            name: '鼻つまんでGA',
+            why: '鼻をつまむことで鼻腔への音の漏れを物理的にブロック。そこからGAを出すと声が口から前に集まりやすい。ネイザルな発声のクセを矯正するのに有効。',
+            effect: '共鳴を鼻から口に切り替える。声の前方集中を体験させる。',
+            ok: '鼻をつまんで出した声の方が前に出た感覚がある',
+          },
+        ]
+      },
+    }
+  },
+  pull: {
+    label: '💪 プル',
+    parts: {
+      '声帯': {
+        icon: '🔴',
+        exercises: [
+          {
+            name: 'リップロール ポルタメント',
+            why: 'リップロールは唇の振動で声道全体がリラックスし、過緊張を自動的に緩める。ポルタメント（音程をつけずにスライド）することで声区を意識させず自然に移行させる。',
+            effect: 'プルの過緊張をリリースしながら音域を行き来させる。声帯に「ゆるめていい」を覚えさせる。',
+            ok: 'リップロールで音が上まで続けられた',
+          },
+          {
+            name: '1.5 Hooty GEE',
+            why: 'Hooty（フート）は声道を広げて高音でも過緊張しない発声状態。GEE の G は有声閉鎖音で声帯を使いながら、EE（い）はヘッドボイスを引き出す狭母音。1.5オクターブでチェストとヘッドを両方通過させる。',
+            effect: '地声成分を保ちながらヘッドに移行する感覚をつける。',
+            ok: '上でふわっとヘッドに切り替わる感覚が出た',
+          },
+        ]
+      },
+      '舌': {
+        icon: '👅',
+        exercises: [
+          {
+            name: '二重母音 Ney / Wey',
+            why: 'プルの人は母音が広がる（あ→えに変化）癖がある。N/W で始まる二重母音は舌の動きを固定しながら母音を整える練習になる。',
+            effect: '母音の広がりを防ぎながら舌の動きをコントロールする習慣をつける。',
+            ok: '音程を上げても母音が崩れにくくなった',
+          },
+          {
+            name: 'オトガイ筋 圧死',
+            why: 'プルの人は張り上げる時に顎を前に出す癖がある。オトガイ筋をほぐすことで顎・舌根の連動した過緊張が取れる。',
+            effect: '張り上げのトリガーになっている顎の緊張をリリース。',
+            ok: '圧迫後に発声すると顎が楽になった',
+          },
+        ]
+      },
+      '仮声帯': {
+        icon: '😤',
+        exercises: [
+          {
+            name: 'ため息 → Hooty WOO',
+            why: 'プルの人は高音で仮声帯が締まりやすい。まずため息で全部ゆるめてから、そのままの喉の状態でWOO（Hooty）に繋げる。',
+            effect: '力んだ発声リセット後に、ゆるんだ状態でヘッドボイスを出す感覚を体験させる。',
+            ok: 'ため息からそのまま裏声に繋がった',
+          },
+        ]
+      },
+      '声道': {
+        icon: '🔊',
+        exercises: [
+          {
+            name: 'Hooty WOO / GOO / GEE',
+            why: '「フート」は声道を最大限に広げた状態。WO/GOO/GEE はいずれも喉を下げながら発声できる母音・子音の組み合わせ。プルの「高音で締まる」問題に直接アプローチ。',
+            effect: '高音でも声道が広がった状態を体験させる。音量よりも響きで声を出す感覚。',
+            ok: 'マイケルジャクソンやミッキーの声が出せた',
+          },
+          {
+            name: 'Broken リップロール 鼻摘んで',
+            why: '鼻をつまんで鼻腔への逃げをブロック。ブロークン（飛び飛びの音程）でリップロールすることで、チェストとヘッドの声区を短時間で何度も行き来させる。',
+            effect: '声区の切り替えを素早く繰り返し、移行をスムーズにする。',
+            ok: 'チェストとヘッドの行き来が怖くなくなった',
+          },
+        ]
+      },
+    }
+  },
+  flip: {
+    label: '🔄 フリップ',
+    parts: {
+      '声帯': {
+        icon: '🔴',
+        exercises: [
+          {
+            name: 'ポルタメント ギシギシハミング',
+            why: 'ギシギシハミング（エッジの入ったハミング）は声帯閉鎖を少し強めた状態。ポルタメントで音程をスライドさせることで、低音の重さを保ちながら上の声区に移行させる。',
+            effect: '低音の声帯の厚みをほぐしながら、上との繋がりを探す。',
+            ok: 'ギシギシが上まで続いた',
+          },
+          {
+            name: 'ペットボトルストロー 1.5',
+            why: 'ペットボトルに水を入れたストローは、通常ストローより抵抗が強く、声帯にかかる圧力がより均一になる。1.5オクターブで低音の過重さをリセットしながら声区を通過させる。',
+            effect: 'チェストの重さを自動調整しながら音域を繋げる。',
+            ok: 'ストロー中はひっくり返らなかった',
+          },
+        ]
+      },
+      '舌': {
+        icon: '👅',
+        exercises: [
+          {
+            name: '1.5 KAY / KIH ベロを出して',
+            why: 'K は無声強子音で声門閉鎖を助ける。EY/IH は中間・狭母音でCTを働かせやすい。舌を出すことで舌根の引き込みを防ぎ、喉が上がらない状態で発声できる。',
+            effect: '舌根の過緊張なしに声区の移行を練習する。',
+            ok: 'ベロを出した時の方がひっくり返りにくかった',
+          },
+          {
+            name: 'クレヨンしんちゃんのモノマネ',
+            why: 'クレヨンしんちゃんの声は甲状軟骨が前傾した状態の声。この状態だとCT（輪状甲状筋）が働きやすく、声帯が自然に伸長する。低音過重のリセットに有効。',
+            effect: '甲状軟骨の前傾感覚をイメージで体験させる。',
+            ok: 'しんちゃんの声を出したら高音が出しやすくなった',
+          },
+        ]
+      },
+      '仮声帯': {
+        icon: '😤',
+        exercises: [
+          {
+            name: 'ポルタメント 叫び HEY / AY',
+            why: '「叫び」は仮声帯が開いた状態で声量が出る発声。HEY/AYは広母音系でチェストを引き出しやすい。ポルタメントで音程をつけずに上まで持っていくことで、閉鎖しすぎずに上声区へ繋げる。',
+            effect: '低音の重さを持ったまま、力みなしで上声区に入る感覚をつかむ。',
+            ok: 'HEYで叫んだら上まで繋がった感覚があった',
+          },
+        ]
+      },
+      '声道': {
+        icon: '🔊',
+        exercises: [
+          {
+            name: '1.5 Hooty GOO / GEE',
+            why: 'Hooty状態（声道全開）でG+狭母音を使うことで、低音の重さをリセットしながら声区を通過させる。GOO（う）は喉を下げる、GEE（い）はヘッドへの引き出しが強い。',
+            effect: '低音の過重さを軽くしながら、上声区まで声道を広げた状態で繋げる。',
+            ok: 'GOO/GEEで出した音がひっくり返らなかった',
+          },
+          {
+            name: 'KAE / NAE 1オクターブダウン',
+            why: 'KとNは舌を使う子音。AE（エ）は中間母音でCTとTA両方を使いやすい。オクターブダウン（高音から低音に降りる）で、高音でついてしまった緊張を下に解放する。',
+            effect: '高音発声後の緊張リセット。上の声区から降りる時のコントロールを養う。',
+            ok: '高音から降りてきた時に声質が繋がっていた',
+          },
+        ]
+      },
+    }
+  }
+};
+
+let currentVoiceType = null;
+let currentPart = null;
+let currentExercises = null;
+
+function selectVoiceType(type) {
+  currentVoiceType = type;
+  document.getElementById('map-step1').style.display = 'none';
+  document.getElementById('map-step2').style.display = 'block';
+  document.getElementById('map-selected-type').textContent = mapData[type].label;
+  
+  const grid = document.getElementById('map-parts-grid');
+  grid.innerHTML = '';
+  Object.keys(mapData[type].parts).forEach(part => {
+    const d = mapData[type].parts[part];
+    const btn = document.createElement('button');
+    btn.className = 'map-part-btn';
+    btn.innerHTML = d.icon + '<br>' + part;
+    btn.onclick = () => selectPart(part);
+    grid.appendChild(btn);
+  });
+}
+
+function selectPart(part) {
+  currentPart = part;
+  const data = mapData[currentVoiceType].parts[part];
+  currentExercises = data.exercises;
+  
+  document.getElementById('map-step2').style.display = 'none';
+  document.getElementById('map-step3').style.display = 'block';
+  document.getElementById('map-selected-part').textContent = mapData[currentVoiceType].label + ' › ' + data.icon + ' ' + part;
+  
+  const list = document.getElementById('map-ex-list');
+  list.innerHTML = '';
+  data.exercises.forEach((ex, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'map-ex-btn';
+    btn.textContent = ex.name;
+    btn.onclick = () => showExDetail(i);
+    list.appendChild(btn);
+  });
+}
+
+function showExDetail(idx) {
+  const ex = currentExercises[idx];
+  document.getElementById('map-step3').style.display = 'none';
+  document.getElementById('map-step4').style.display = 'block';
+  
+  document.getElementById('map-ex-detail').innerHTML = `
+    <div class="map-detail-card">
+      <div class="map-detail-title">${ex.name}</div>
+      <div class="map-detail-section">
+        <h4>🎯 なぜこのエクササイズ？</h4>
+        <p>${ex.why}</p>
+      </div>
+      <div class="map-detail-section">
+        <h4>✨ 効果</h4>
+        <p>${ex.effect}</p>
+      </div>
+      <div class="map-detail-section">
+        <h4>✅ 次に進むサイン</h4>
+        <p>${ex.ok}</p>
+      </div>
+    </div>
+  `;
+}
+
+function resetMap() {
+  document.getElementById('map-step2').style.display = 'none';
+  document.getElementById('map-step1').style.display = 'block';
+}
+
+function backToParts() {
+  document.getElementById('map-step3').style.display = 'none';
+  document.getElementById('map-step2').style.display = 'block';
+}
+
+function backToEx() {
+  document.getElementById('map-step4').style.display = 'none';
+  document.getElementById('map-step3').style.display = 'block';
+}
+
+
+// ===== TOOL & SYMPTOM DATA =====
+const toolData = {
+  consonants: [
+    { name: 'G（ガ行）', tags: ['有声','強子音','舌奥'], why: '舌の奥と軟口蓋でいったん気道を完全にふさいで一気に開放する有声閉鎖音。この開放の瞬間に声帯が反射的に強く閉じる（声門閉鎖反射）。', effect: '声帯閉鎖を強制的に引き起こす。声帯を使えていない人への最初のアプローチ。', goodFor: ['声帯閉鎖が弱い（ライトチェスト）','ネイザルな発声の矯正'], examples: ['GUG（ガ）','GEE（ギ）','GOO（グ）','GAY（ゲイ）'] },
+    { name: 'K（カ行）', tags: ['無声','強子音','舌奥','ネイザル矯正'], why: 'Gと同じ調音点（舌奥＋軟口蓋）だが無声音。調音部位が中舌と硬口蓋になるのでネイザルがちな発声に有効。声帯を使わず音響アプローチしたい時にも使える。', effect: '声帯に頼らず音響的なアプローチで共鳴を整える。特にネイザル矯正に効果的。', goodFor: ['ネイザル（鼻声）の矯正','声帯過緊張の人への音響アプローチ'], examples: ['KAY（ケイ）','KEE（キ）','KAE（カ）'] },
+    { name: 'D（ダ行）', tags: ['有声','強子音','舌先'], why: '舌先と歯茎を使う有声閉鎖音。Gより前の調音点なので声が前方に集まりやすい。有声なので声帯を使いながら閉鎖を強める。', effect: '声帯閉鎖を強化しながら共鳴を前方に集める。', goodFor: ['声帯閉鎖が弱い','声が奥に引っ込む人'], examples: ['DAY（デイ）','DEE（ディ）'] },
+    { name: 'B（バ行）', tags: ['有声','強子音','唇'], why: '唇を使う有声閉鎖音。唇という最前部で閉鎖するため声が最も前方に集まりやすい。ただし狭窄や鼻声の人には向かない。', effect: '声を前方に集めながら閉鎖を強化する。', goodFor: ['声が前に出ない','声を前方に集めたい'], examples: ['BUB（バ）','BOH（ボ）'] },
+    { name: 'N（ナ行）', tags: ['有声','弱子音','鼻音','CT活性'], why: '鼻腔まで使う鼻音。鼻腔への気流が増えるため鼻腔共鳴を引き出しやすい。CTを働かせやすい中間的な子音。', effect: '鼻腔共鳴を引き出す。声帯伸長（CT活性）への橋渡し。', goodFor: ['声帯を伸長させたい（CT活性）','ヘッドボイスへの橋渡し'], examples: ['NAY（ネイ）','NEE（ニ）','NAE（な）'] },
+    { name: 'M（マ行）', tags: ['有声','弱子音','鼻音','ヒーリング'], why: '唇を閉じた状態での鼻音。ハミングと同じ状態を子音として使う。声道全体が共鳴しやすく、声帯閉鎖を程よく保ちながらリラックスさせる。', effect: '声帯を使いながら声道全体をほぐす。ヒーリング効果もある。', goodFor: ['声道全体の緊張をほぐしたい','仮声帯のリリース'], examples: ['MUM（マ）','ハミング（M音）'] },
+    { name: 'W（ワ行）', tags: ['有声','弱子音','唇','エアフロー'], why: '唇を丸めながら息が増える弱子音。声帯の閉鎖を緩める方向に働くため、過緊張・仮声帯の締まりをリリースするのに有効。Hootyとの相性が良い。', effect: '仮声帯と声帯の緊張を息で流しながらリリース。', goodFor: ['仮声帯の圧迫を取る','喉の過緊張をほぐす','ヘッドボイスへの入り口'], examples: ['WOO（ウ）','WEE（ウィ）','WOH（ウォ）'] },
+    { name: 'F・P（エアフロー系）', tags: ['無声','弱子音','唇','エアフロー'], why: 'F/Pは息が増える無声子音。声帯を使わずに声道を息で流すことで過緊張をリリースする。力みすぎている時のリセットに有効。', effect: '声帯・仮声帯の緊張を息で流す。力みのリセット。', goodFor: ['仮声帯の圧迫を取る','過緊張のリセット'], examples: ['Fee','Fa','Fo'] },
+    { name: 'S・SH（サ行・シャ）', tags: ['無声','弱子音','エアフロー'], why: '一定の息の流れをコントロールしながら声帯への空気圧を調整できる無声摩擦音。', effect: '息のコントロールを養う。声帯前の息の流れを整える。', goodFor: ['息の量が安定しない','声帯閉鎖のタイミングが合わない'], examples: ['SHH（シー）','スーーー'] },
+  ],
+  tools: [
+    { name: 'ストロー', tags: ['SOVT','ヒーリング'], why: 'ストローで息を細く絞ると声道内の圧力が上がり、声帯が受動的に閉じやすくなる。自分で意識的に閉じようとしなくてよいため過緊張が起きにくい。', effect: '力みなしで声帯閉鎖を体験させる。ライトチェストの最初の一歩・フリップの繋がり探しに有効。', goodFor: ['声帯閉鎖が弱い','フリップのつながりを探す','過緊張のリセット'] },
+    { name: 'リップロール', tags: ['SOVT','ヒーリング','唇振動'], why: '唇の振動が声道全体に伝わり、声道・声帯・仮声帯が同時にリラックスする。音程移動中に過緊張が起きにくいため音域を行き来しやすい。', effect: '声帯に「ゆるめていい」を体験させる。プル・フリップの音域移行の入り口。', goodFor: ['プル（張り上げる）のリリース','フリップの繋がり探し','音域移行の練習'] },
+    { name: 'ハミング', tags: ['鼻音','CT活性','ヒーリング'], why: '唇を閉じた状態でM音を出すことで声道全体が共鳴し、CTが自然に働きやすくなる。声帯の閉鎖を程よく保ちながら全体をほぐす。', effect: '声帯伸長（CT活性）を促しながらヒーリング。サイレンと組み合わせると音域全体を滑らかにできる。', goodFor: ['声帯を伸長させたい','フリップの繋がり探し','声道のほぐし'] },
+    { name: 'ポルタメント', tags: ['音程スライド','声区移行'], why: '音程をつけずにスライドさせることで、声区の変わり目を意識させずに音域を行き来させる。特定の音程で「構える」クセがなくなる。', effect: '声区の意識を外して自然な移行を促す。', goodFor: ['フリップ（ひっくり返る）','プル（声区の切り替えが怖い）'] },
+    { name: 'Hooty（フート）', tags: ['声道拡張','過緊張リリース'], why: '声道を最大限に広げた「フクロウ」のような発声状態。声道が広がると声帯や仮声帯への圧力が下がり、高音でも過緊張しにくくなる。', effect: '高音でも声道が広い状態を体験させる。', goodFor: ['高音で喉が締まる（プル）','ヘッドボイスが出ない','声道の過緊張'] },
+    { name: 'ペットボトルぶくぶく', tags: ['SOVT','ヒーリング','水圧'], why: 'ストローより水圧による抵抗が強く、声帯にかかる圧力がより均一で安定する。フリップの低音過重リセットや声帯閉鎖のキャリブレーションに使う。', effect: 'ストローより強いSOVT効果。音域全体の声帯圧力を均一化する。', goodFor: ['フリップ（低音が重すぎる）','声帯の圧力調整'] },
+    { name: '吸気発声', tags: ['声帯閉鎖','強制閉鎖'], why: '息を吸いながら発声すると声帯が吸気で物理的に引き寄せられて強制的に閉じる。意識で閉じられない重度のライトチェストでも100%閉じる。', effect: '声帯閉鎖感覚の最終手段。本当に弱い場合のみ使用。', goodFor: ['重度のライトチェスト（閉じる感覚がゼロ）'] },
+    { name: 'エッジボイス・ボーカルフライ', tags: ['声帯感覚','声帯認識'], why: '声帯をゆるゆるにしてガラガラ声を出すことで「声帯が閉じる→開く→閉じる」のリズムに慣れる。声帯の場所・動きを感じられない人への気づきを与える。', effect: '声帯の存在認識。閉鎖感覚のゼロスタート。', goodFor: ['声帯の感覚がわからない','ライトチェストの声帯感覚入門'] },
+    { name: 'グロッタル', tags: ['声帯閉鎖','強閉鎖'], why: '声帯を一瞬完全に閉じて開放するアクション。「あっ！」という時の喉の動き。閉鎖を強化するが、やりすぎると過緊張になるので注意。', effect: '声帯閉鎖の瞬間的な強化。', goodFor: ['声帯閉鎖が弱い（軽度〜中度）'] },
+  ]
+};
+
+const symptomData = [
+  { name: 'ひっくり返る（フリップ）', icon: '🔄', cause: '輪状甲状筋（CT）と甲状披裂筋（TA）のバランスが悪い。低音で声帯が厚すぎて高音に移行できずに急に薄くなる。', tools: [ { name: 'ポルタメント ギシギシハミング', why: '音程移行を意識させず自然に声区を通過させる。ギシギシで閉鎖を少し保ちながら移行できる。' }, { name: 'ペットボトルストロー 1.5オクターブ', why: '声帯への圧力を均一にしながら低音の過重をリセット。ひっくり返らずに音域を通過できる確率が上がる。' }, { name: '5T KAY/KIH ハイラリで中指', why: 'ひっくり返る音の直前でハイラリに指を当てて感覚を確認しながら、ゆっくり・息少なくで繰り返す。' }, { name: 'クレヨンしんちゃんのモノマネ', why: '甲状軟骨を前傾させるイメージをつけることでCTが働きやすくなり、低音の重さが自然に減る。' } ] },
+  { name: '張り上げる（プル）', icon: '😤', cause: '声帯が分厚いまま高音まで持ち上げようとする過緊張。高い声＝大きな声という誤解が原因のことが多い。', tools: [ { name: '1.5 リップロール 鼻摘んで', why: '過緊張を自動的に緩めながら音域を行き来させる。鼻をつまんで鼻腔への逃げをブロックし口からの共鳴を意識させる。' }, { name: 'WOO/GOO/GEE Hooty', why: '声道を最大限広げた状態で発声することで、高音でも「力で押し上げなくていい」感覚をつける。' }, { name: 'ため息 → WOO', why: 'まず全部リリースしてから、そのゆるんだ喉のままWOOに繋げる。張り上げリセット後にヘッドを体験させる。' } ] },
+  { name: '声が細い・息っぽい（ライトチェスト）', icon: '💨', cause: '声帯閉鎖が弱い・薄い。声帯が適切に閉じられていないため息が漏れる。', tools: [ { name: 'GUG（ガ）5トーン', why: 'G（有声強子音）が声帯閉鎖を反射的に引き起こす。U（喉が下がる母音）でリラックスしながら閉鎖を強化できる。' }, { name: '舌出し5トーンあ', why: '舌を前に出して喉の上昇をブロック。広母音あ（チェスト引き出し）で声帯閉鎖を安定させる。' }, { name: 'ストロー', why: '自分で意識しなくても声帯が受動的に閉じる。力みなしで閉鎖感覚を体験させる最初の一歩。' } ] },
+  { name: '高音で喉が閉まる（仮声帯）', icon: '🔒', cause: '仮声帯が締まっている。緊張・力み・高音への恐怖で仮声帯が収縮する。', tools: [ { name: 'ため息', why: '仮声帯は力みで締まる。ため息は体全体の緊張を抜く動作で仮声帯が自動的に開く。最もシンプルなリセット。' }, { name: 'はっはっはー（柔らかく笑う）', why: '笑いの動作は仮声帯を開く反射と連動。腹から笑うのではなく声帯だけを使う感覚がポイント。' }, { name: 'Hooty WOO/GOO', why: '声道を広げることで声帯・仮声帯へのプレッシャーが減り、高音でも締まらない状態を体験させる。' }, { name: 'F・P・W子音（エアフロー）', why: '弱子音の息の流れで仮声帯と声帯の緊張を流しながらリリース。強子音（G/K）を使う前の準備に。' } ] },
+  { name: '鼻声になる（ネイザル）', icon: '👃', cause: '軟口蓋が上がっておらず、音が鼻腔に漏れている。または過度なネイザル共鳴。', tools: [ { name: '鼻つまんでGA', why: '鼻をつまんで鼻腔への漏れを物理的にブロック。GAで声を口から前に出す感覚を体験させる。' }, { name: 'んが（鼻→口）繰り返し', why: '「ん」で鼻に入り「が」で鼻から口に抜ける動作を繰り返すことで、軟口蓋の開閉コントロールを養う。' }, { name: 'K（ケイケイ）', why: '調音部位が中舌と硬口蓋になるためネイザルがちな発声でも音響的に前に集めやすい。' } ] },
+  { name: '舌が固い・舌根が上がる', icon: '👅', cause: '舌根の過緊張。舌が奥に引っ込むと声道が狭くなり、共鳴・音色・音域に影響する。', tools: [ { name: 'ティッシュで舌を引き出す', why: '物理的に舌を前に引き出して舌根の緊張を強制リリース。声を出しながらやるとその場で声が変わる。' }, { name: 'オトガイ筋 圧死', why: '顎の下のオトガイ筋が硬いと舌骨が引っ張られて舌根が上がる。指で圧迫してほぐすと連鎖的に緊張が取れる。' }, { name: '二重母音 Ney / Wey', why: '舌を動かしながら発声する練習。固まった舌のパターンを動きで崩す。' } ] },
+  { name: '高音が出ない・ヘッドに入れない', icon: '🚀', cause: 'CTが働いていない・声道が狭い・高音への恐怖感がある。', tools: [ { name: 'ハイラリ（ハミング/サイレン）', why: 'CTを直接働かせる動き。高音でも声帯が伸長できる状態を作る。' }, { name: 'Hooty GEE / GOO', why: 'GEE（い）はヘッドボイスを引き出す狭母音。Hootyで声道を広げながらGでヘッドに引き込む。' }, { name: 'ミッキーマウスのモノマネ', why: '甲状軟骨が前傾したイメージで発声するとCTが自然に働く。高音への恐怖感をイメージで突破できる。' }, { name: 'ないしょ話し', why: '声は出ている状態でないしょ話しをすると仮声帯が開き、声帯だけで軽く発声する感覚がつかめる。' } ] },
+  { name: '音程がシャープする', icon: '🎵', cause: '声帯閉鎖が強すぎる・または弱すぎる。声道の緊張や仮声帯の締まりが音程を不安定にする。', tools: [ { name: 'ため息・リラックス系から始める', why: 'まず全体の緊張をリセット。力みが原因の場合はこれだけで改善することがある。' }, { name: 'ストロー・ペットボトルぶくぶく', why: '声道内圧力を調整することで声帯への負荷が均一になり、音程が安定しやすくなる。' }, { name: 'ポルタメント', why: '特定の音程で「構える」クセを外して、自然な音程移行を促す。' } ] },
+];
+
+function selectMode(mode) {
+  document.getElementById('map-mode-select').style.display = mode ? 'none' : 'flex';
+  document.getElementById('map-vt-wrap').style.display = mode === 'voicetype' ? 'block' : 'none';
+  document.getElementById('map-tool-wrap').style.display = mode === 'tool' ? 'block' : 'none';
+  document.getElementById('map-symptom-wrap').style.display = mode === 'symptom' ? 'block' : 'none';
+  if (mode === 'tool') initToolMode();
+  if (mode === 'symptom') initSymptomMode();
+}
+
+function initToolMode() {
+  const cTags = document.getElementById('map-consonant-tags');
+  const tTags = document.getElementById('map-tool-tags');
+  if (cTags.innerHTML) return;
+  toolData.consonants.forEach((item, i) => {
+    const tag = document.createElement('button');
+    tag.className = 'map-tag';
+    tag.textContent = item.name;
+    tag.onclick = () => showToolDetail('consonant', i, tag);
+    cTags.appendChild(tag);
+  });
+  toolData.tools.forEach((item, i) => {
+    const tag = document.createElement('button');
+    tag.className = 'map-tag';
+    tag.textContent = item.name;
+    tag.onclick = () => showToolDetail('tool', i, tag);
+    tTags.appendChild(tag);
+  });
+}
+
+function showToolDetail(type, idx, btn) {
+  document.querySelectorAll('#map-tool-wrap .map-tag').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const item = type === 'consonant' ? toolData.consonants[idx] : toolData.tools[idx];
+  const chips = item.tags.map(t => `<span class="map-tool-chip">${t}</span>`).join('');
+  const goodFor = item.goodFor.map(g => `<li style="margin-bottom:4px;">${g}</li>`).join('');
+  const examples = item.examples ? `<div class="map-result-section"><h4>💬 使用例</h4><p>${item.examples.join('　/　')}</p></div>` : '';
+  document.getElementById('map-tool-detail-content').innerHTML = `
+    <div class="map-result-card">
+      <div class="map-result-title">${item.name}</div>
+      <div class="map-tool-chips">${chips}</div>
+      <div class="map-result-section" style="margin-top:12px;"><h4>🎯 なぜ効くのか</h4><p>${item.why}</p></div>
+      <div class="map-result-section"><h4>✨ 効果</h4><p>${item.effect}</p></div>
+      <div class="map-result-section"><h4>👤 こんな人に</h4><ul style="padding-left:16px;font-size:0.84rem;line-height:1.8;color:#333;">${goodFor}</ul></div>
+      ${examples}
+    </div>`;
+  const detail = document.getElementById('map-tool-detail');
+  detail.style.display = 'block';
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function initSymptomMode() {
+  const tags = document.getElementById('map-symptom-tags');
+  if (tags.innerHTML) return;
+  symptomData.forEach((item, i) => {
+    const tag = document.createElement('button');
+    tag.className = 'map-tag';
+    tag.style.fontSize = '0.78rem';
+    tag.textContent = item.icon + ' ' + item.name;
+    tag.onclick = () => showSymptomDetail(i, tag);
+    tags.appendChild(tag);
+  });
+}
+
+function showSymptomDetail(idx, btn) {
+  document.querySelectorAll('#map-symptom-wrap .map-tag').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const item = symptomData[idx];
+  const toolsHtml = item.tools.map(t => `
+    <div style="background:#f9f9f9;border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--pink);">
+      <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.88rem;font-weight:700;color:var(--dark);margin-bottom:6px;">▶ ${t.name}</div>
+      <div style="font-size:0.82rem;line-height:1.6;color:#444;">${t.why}</div>
+    </div>`).join('');
+  document.getElementById('map-symptom-detail-content').innerHTML = `
+    <div class="map-result-card">
+      <div class="map-result-title">${item.icon} ${item.name}</div>
+      <div class="map-result-section"><h4>🔍 原因</h4><p>${item.cause}</p></div>
+      <div class="map-result-section"><h4>💊 打つエクササイズ＆理由</h4>${toolsHtml}</div>
+    </div>`;
+  const detail = document.getElementById('map-symptom-detail');
+  detail.style.display = 'block';
+  detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+
+// ===== DIAGNOSIS =====
+let diagGender = 'f';
+let mediaRecorder = null;
+let audioChunks = [];
+let isRecording = false;
+let selectedNoteKey = null;
+let activeSymptoms = [];
+let noteRecords = []; // [{note, label, symptoms:[]}]
+let audioContext = null;
+let analyser = null;
+let animFrame = null;
+
+const bridgeColors = {
+  f: {
+    'F3':'#c084fc','G3':'#c084fc','A3':'#c084fc','B3':'#c084fc',
+    'C4':'#818cf8','D4':'#818cf8','E4':'#818cf8','F4':'#818cf8','G4':'#818cf8',
+    'A4':'#38bdf8','B4':'#38bdf8','C5':'#38bdf8',
+    'D5':'#34d399','E5':'#34d399','F5':'#34d399',
+    'G5':'#fb923c','A5':'#fb923c','B5':'#fb923c','C6':'#fb923c',
+  },
+  m: {
+    'A2':'#c084fc','B2':'#c084fc','C3':'#c084fc','D3':'#c084fc','E3':'#c084fc','F3':'#c084fc','G3':'#c084fc',
+    'A3':'#818cf8','B3':'#818cf8','C4':'#818cf8','D4':'#818cf8',
+    'E4':'#38bdf8','F4':'#38bdf8','G4':'#38bdf8',
+    'A4':'#34d399','B4':'#34d399','C5':'#34d399',
+    'D5':'#fb923c','E5':'#fb923c','F5':'#fb923c',
+  }
+};
+
+const noteRanges = {
+  f: ['F3','Gb3','G3','Ab3','A3','Bb3','B3','C4','Db4','D4','Eb4','E4','F4','Gb4','G4','Ab4','A4','Bb4','B4','C5','Db5','D5','Eb5','E5','F5','Gb5','G5','Ab5','A5','Bb5','B5','C6'],
+  m: ['A2','Bb2','B2','C3','Db3','D3','Eb3','E3','F3','Gb3','G3','Ab3','A3','Bb3','B3','C4','Db4','D4','Eb4','E4','F4','Gb4','G4','Ab4','A4','Bb4','B4','C5','Db5','D5','Eb5','E5','F5']
+};
+
+const blackKeys = ['Gb','Ab','Bb','Db','Eb'];
+const startNotes = { f: 'F3', m: 'C3' };
+
+function isBlack(note) { return blackKeys.some(b => note.startsWith(b)); }
+function noteLabel(note) {
+  const n = note.replace(/[0-9]/g, '');
+  const oct = note.replace(/[^0-9]/g, '');
+  const map = {'Db':'C#','Eb':'D#','Gb':'F#','Ab':'G#','Bb':'A#'};
+  return (map[n] || n) + oct;
+}
+
+function selectDiagGender(g) {
+  diagGender = g;
+  document.getElementById('diag-gender-label').textContent = g === 'f' ? '👩 女性' : '👨 男性';
+  document.getElementById('diag-start-note').textContent = g === 'f' ? 'F3（低め）〜 複数キーで試そう' : 'C3（低め）〜 複数キーで試そう';
+  diagGoTo(2);
+}
+
+function diagGoTo(step) {
+  [1,2,3,4].forEach(s => {
+    const el = document.getElementById('dstep-' + s);
+    if (el) el.style.display = s === step ? 'block' : 'none';
+    const ind = document.getElementById('dstep-ind-' + s);
+    if (ind) {
+      ind.classList.remove('active','done');
+      if (s === step) ind.classList.add('active');
+      else if (s < step) ind.classList.add('done');
+    }
+  });
+  if (step === 3) buildPiano();
+}
+
+function buildPiano() {
+  const container = document.getElementById('piano-keys');
+  container.innerHTML = '';
+  const notes = noteRanges[diagGender];
+  const colors = bridgeColors[diagGender];
+  const baseColors = {'#c084fc':'#ede9fe','#818cf8':'#e0e7ff','#38bdf8':'#e0f2fe','#34d399':'#d1fae5','#fb923c':'#ffedd5'};
+
+  notes.forEach(note => {
+    const key = document.createElement('div');
+    const black = isBlack(note);
+    key.className = 'piano-key ' + (black ? 'black' : 'white');
+    key.dataset.note = note;
+    
+    // Color by bridge zone
+    const baseColor = colors[note.replace('b','').replace('#','')] || colors[note] || '#e5e7eb';
+    // Find best match
+    let matchColor = '#e5e7eb';
+    for (const [k, v] of Object.entries(colors)) {
+      if (note === k || note.startsWith(k.replace(/[0-9]/,''))) { matchColor = v; break; }
+    }
+    // Direct lookup
+    const directColor = colors[note] || matchColor;
+    if (!black) {
+      const light = baseColors[directColor] || '#f3f4f6';
+      key.style.background = light;
+    }
+    
+    key.innerHTML = '<span style="writing-mode:vertical-rl;font-size:0.52rem;opacity:0.7;">' + noteLabel(note) + '</span>';
+    key.onclick = () => selectPianoKey(note, key);
+    container.appendChild(key);
+  });
+}
+
+function selectPianoKey(note, keyEl) {
+  document.querySelectorAll('.piano-key').forEach(k => k.classList.remove('selected'));
+  keyEl.classList.add('selected');
+  selectedNoteKey = note;
+  activeSymptoms = [];
+  document.querySelectorAll('.symptom-chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('selected-note-label').textContent = noteLabel(note);
+  document.getElementById('symptom-selector').style.display = 'block';
+  document.getElementById('symptom-selector').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function toggleSymptom(btn, sym) {
+  btn.classList.toggle('active');
+  if (btn.classList.contains('active')) {
+    if (!activeSymptoms.includes(sym)) activeSymptoms.push(sym);
+  } else {
+    activeSymptoms = activeSymptoms.filter(s => s !== sym);
+  }
+}
+
+const symptomLabels = { flip:'🔄ひっくり返る', pull:'😤詰まる・張り上げる', narrow:'😬狭窄する', light:'💨息っぽい・抜ける', heavy:'🏋️重くなる', sharp:'🎵シャープする' };
+
+function addNoteRecord() {
+  if (!selectedNoteKey || activeSymptoms.length === 0) {
+    alert('鍵盤と症状を両方選んでください');
+    return;
+  }
+  // Remove duplicate
+  noteRecords = noteRecords.filter(r => r.note !== selectedNoteKey);
+  noteRecords.push({ note: selectedNoteKey, label: noteLabel(selectedNoteKey), symptoms: [...activeSymptoms] });
+  
+  renderNoteRecords();
+  document.getElementById('symptom-selector').style.display = 'none';
+  selectedNoteKey = null;
+  activeSymptoms = [];
+  document.querySelectorAll('.piano-key').forEach(k => k.classList.remove('selected'));
+}
+
+function renderNoteRecords() {
+  const el = document.getElementById('recorded-notes');
+  if (noteRecords.length === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = '<div style="font-family:M PLUS Rounded 1c,sans-serif;font-size:0.82rem;font-weight:700;color:var(--gray);margin-bottom:8px;">📝 記録済み</div>' +
+    noteRecords.map((r, i) => `
+      <div class="note-record-item">
+        <span class="note-record-name">${r.label}</span>
+        <div class="note-record-symptoms">${r.symptoms.map(s => `<span class="nrs">${symptomLabels[s]}</span>`).join('')}</div>
+        <span class="note-record-del" onclick="deleteNoteRecord(${i})">✕</span>
+      </div>`).join('');
+}
+
+function deleteNoteRecord(i) {
+  noteRecords.splice(i, 1);
+  renderNoteRecords();
+}
+
+// ===== RECORDING =====
+let currentStream = null;
+
+async function toggleRecording() {
+  if (!isRecording) {
+    // Check if getUserMedia is available
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showRecError('このブラウザまたは環境では録音機能が使えません。<br>「録音をスキップして次へ」から進んでください。');
+      return;
+    }
+    try {
+      currentStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioContext.createAnalyser();
+      const source = audioContext.createMediaStreamSource(currentStream);
+      source.connect(analyser);
+      analyser.fftSize = 2048;
+
+      // Try to find supported MIME type
+      const mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm'
+        : MediaRecorder.isTypeSupported('audio/ogg') ? 'audio/ogg'
+        : '';
+      const options = mimeType ? { mimeType } : {};
+      
+      mediaRecorder = new MediaRecorder(currentStream, options);
+      audioChunks = [];
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+      mediaRecorder.onstop = analyzeAudio;
+      mediaRecorder.start(100); // collect every 100ms
+      isRecording = true;
+
+      const btn = document.getElementById('diag-rec-btn');
+      btn.classList.add('recording');
+      document.getElementById('diag-rec-icon').textContent = '⏹';
+      document.getElementById('diag-rec-label').textContent = '停止';
+      document.getElementById('diag-rec-status').style.display = 'block';
+      animateBars();
+    } catch(e) {
+      console.error('Recording error:', e);
+      showRecError('マイクへのアクセスを許可してください。<br>ブラウザのアドレスバー左側のアイコンから許可できます。<br>または「スキップして次へ」から進んでください。');
+    }
+  } else {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+    }
+    if (currentStream) {
+      currentStream.getTracks().forEach(t => t.stop());
+      currentStream = null;
+    }
+    isRecording = false;
+    cancelAnimationFrame(animFrame);
+    const btn = document.getElementById('diag-rec-btn');
+    btn.classList.remove('recording');
+    document.getElementById('diag-rec-icon').textContent = '🎤';
+    document.getElementById('diag-rec-label').textContent = '録音開始';
+  }
+}
+
+function showRecError(msg) {
+  document.getElementById('diag-rec-status').style.display = 'block';
+  document.getElementById('diag-rec-status').innerHTML = `
+    <div style="background:#fff3e0;border-radius:10px;padding:12px 14px;border-left:3px solid #ff9800;font-size:0.82rem;line-height:1.7;color:#5d4037;">
+      ⚠️ ${msg}
+    </div>`;
+}
+
+function animateBars() {
+  if (!analyser) return;
+  const data = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(data);
+  const bars = document.querySelectorAll('.bar');
+  const step = Math.floor(data.length / bars.length);
+  bars.forEach((bar, i) => {
+    const val = data[i * step] / 255;
+    bar.style.height = Math.max(8, val * 36) + 'px';
+  });
+  animFrame = requestAnimationFrame(animateBars);
+}
+
+function analyzeAudio() {
+  const blob = new Blob(audioChunks, { type: 'audio/webm' });
+  const url = URL.createObjectURL(blob);
+  const audio = new Audio(url);
+  
+  const offCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const reader = new FileReader();
+  reader.onload = async (e) => {
+    try {
+      const buffer = await offCtx.decodeAudioData(e.target.result);
+      const data = buffer.getChannelData(0);
+      
+      // RMS (音量の安定性)
+      let sum = 0;
+      let maxAmp = 0;
+      for (let i = 0; i < data.length; i++) {
+        sum += data[i] * data[i];
+        if (Math.abs(data[i]) > maxAmp) maxAmp = Math.abs(data[i]);
+      }
+      const rms = Math.sqrt(sum / data.length);
+      const volumeScore = Math.min(100, Math.round(rms * 800));
+      
+      // Zero crossing rate (息っぽさの近似)
+      let zc = 0;
+      for (let i = 1; i < data.length; i++) {
+        if ((data[i] >= 0 && data[i-1] < 0) || (data[i] < 0 && data[i-1] >= 0)) zc++;
+      }
+      const zcRate = zc / data.length;
+      const breathScore = Math.min(100, Math.round(zcRate * 3000));
+      
+      // Amplitude variation (音量の揺れ)
+      const chunkSize = Math.floor(data.length / 20);
+      const chunks = [];
+      for (let i = 0; i < 20; i++) {
+        let s = 0;
+        for (let j = 0; j < chunkSize; j++) s += Math.abs(data[i*chunkSize+j]);
+        chunks.push(s / chunkSize);
+      }
+      const avg = chunks.reduce((a,b)=>a+b,0)/chunks.length;
+      const variance = chunks.reduce((a,b)=>a+Math.pow(b-avg,2),0)/chunks.length;
+      const stabilityScore = Math.max(0, 100 - Math.round(Math.sqrt(variance)/avg*200));
+
+      showAnalysisResult(volumeScore, breathScore, stabilityScore);
+    } catch(err) {
+      document.getElementById('diag-analysis-result').innerHTML = '<p style="font-size:0.8rem;color:var(--gray);">分析できませんでした。症状を手動で入力してください。</p>';
+    }
+  };
+  reader.readAsArrayBuffer(blob);
+  document.getElementById('diag-rec-next').style.display = 'block';
+}
+
+function showAnalysisResult(vol, breath, stab) {
+  const breathLabel = breath > 60 ? '高め（息が混じっている可能性）' : breath > 35 ? '中程度' : '低め（声帯閉鎖は比較的しっかり）';
+  const volLabel = vol > 50 ? '十分' : vol > 25 ? '中程度' : '小さめ';
+  const stabLabel = stab > 70 ? '安定' : stab > 40 ? '中程度' : '不安定（音量のバラつきあり）';
+  
+  document.getElementById('diag-analysis-result').innerHTML = `
+    <div class="diag-analysis-card">
+      <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.82rem;font-weight:700;color:var(--pink);margin-bottom:10px;">🔬 録音の分析結果（参考値）</div>
+      ${makeBar('息っぽさ', breath, breathLabel)}
+      ${makeBar('音量', vol, volLabel)}
+      ${makeBar('安定性', stab, stabLabel)}
+      <div style="font-size:0.72rem;color:var(--gray);margin-top:8px;">※あくまで参考値です。次のステップで詳しく記録してください。</div>
+    </div>`;
+}
+
+function makeBar(label, val, desc) {
+  return `<div class="diag-analysis-row">
+    <span style="min-width:60px;">${label}</span>
+    <div class="diag-analysis-bar-wrap"><div class="diag-analysis-bar-fill" style="width:${val}%;"></div></div>
+    <span style="font-size:0.7rem;color:var(--gray);min-width:80px;text-align:right;">${desc}</span>
+  </div>`;
+}
+
+// ===== DIAGNOSIS LOGIC =====
+function calcDiagnosis() {
+  if (noteRecords.length === 0) {
+    const el = document.getElementById('recorded-notes');
+    el.innerHTML = '<div style="background:#fff3e0;border-radius:10px;padding:10px 14px;border-left:3px solid #ff9800;font-size:0.82rem;color:#5d4037;">⚠️ 鍵盤で少なくとも1つ記録してから診断してください</div>';
+    el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    return;
+  }
+  
+  // Count symptoms
+  const counts = { flip: 0, pull: 0, light: 0, narrow: 0, heavy: 0, sharp: 0 };
+  noteRecords.forEach(r => r.symptoms.forEach(s => counts[s]++));
+  
+  // Bridge zone analysis
+  const colors = bridgeColors[diagGender];
+  const bridges = noteRecords.map(r => {
+    for (const [k,v] of Object.entries(colors)) {
+      if (r.note === k) return v;
+    }
+    return null;
+  });
+  
+  // Determine voice type
+  let voiceType = 'mix';
+  let confidence = '';
+  let subType = '';
+  
+  const flipScore = counts.flip * 3 + counts.heavy * 1;
+  const pullScore = counts.pull * 3 + counts.heavy * 2 + counts.narrow * 1;
+  const lightScore = counts.light * 3 + counts.sharp * 2;
+  
+  if (flipScore >= pullScore && flipScore >= lightScore && flipScore > 0) {
+    voiceType = 'flip';
+    subType = counts.heavy > counts.light ? '低音過重型' : '脆弱型';
+    confidence = flipScore > 4 ? '可能性が高い' : '可能性あり';
+  } else if (pullScore >= flipScore && pullScore >= lightScore && pullScore > 0) {
+    voiceType = 'pull';
+    confidence = pullScore > 4 ? '可能性が高い' : '可能性あり';
+  } else if (lightScore > 0) {
+    voiceType = 'light';
+    subType = counts.sharp > 1 ? '過緊張型' : '脆弱型';
+    confidence = lightScore > 4 ? '可能性が高い' : '可能性あり';
+  }
+  
+  showDiagResult(voiceType, subType, confidence, counts);
+  diagGoTo(4);
+}
+
+const diagExercises = {
+  flip: {
+    '低音過重型': [
+      { name: '1.5 リップロール', why: '低音の過重さを自動的にリセットしながら音域を行き来させる。' },
+      { name: 'ポルタメント ギシギシハミング', why: '声区移行を意識させず自然に通過させる。' },
+      { name: 'KAY/KEE 1.5 Funny', why: 'K（強子音）＋EE（狭母音）でCTを働かせながら音域を行き来。' },
+    ],
+    '脆弱型': [
+      { name: 'ポルタメント ハミング声帯閉鎖', why: '閉鎖を保ちながらポルタメントで自然に繋げる。' },
+      { name: 'BUB / MUM 1.5', why: 'B/M（有声子音）＋広母音で声帯閉鎖を強化しながら声区を繋げる。' },
+      { name: 'Edgy EH staccato', why: 'エッジをかけたEH（え）で声帯閉鎖の感覚を強める。' },
+    ]
+  },
+  pull: {
+    '': [
+      { name: '1.5 リップロール 鼻摘んで', why: '過緊張を緩めながら音域を行き来。鼻をつまんで鼻腔への逃げをブロック。' },
+      { name: 'WOO/GOO Hooty', why: '声道を広げた状態で発声することで高音での締まりを防ぐ。' },
+      { name: '1.5 Hooty GEE', why: 'GEE（狭母音い）でヘッドを引き出しながら地声成分を保つ。' },
+    ]
+  },
+  light: {
+    '脆弱型': [
+      { name: 'GUG（ガ）5トーン', why: 'G（有声強子音）で声帯閉鎖を反射的に引き起こす。' },
+      { name: '舌出し5トーンあ', why: '舌を前に出して喉の上昇をブロックしながらチェストを引き出す。' },
+      { name: 'ストロー', why: '力みなしで声帯閉鎖を受動的に体験させる。' },
+    ],
+    '過緊張型': [
+      { name: 'ため息 → 5トーンあ', why: 'まず過緊張をリセットしてから地声を引き出す。' },
+      { name: 'F・W子音（エアフロー）', why: '弱子音の息で仮声帯の締まりを流してからチェストへ。' },
+      { name: 'ストロー', why: '声道内圧力を調整して過緊張なしに発声。' },
+    ]
+  }
+};
+
+function showDiagResult(type, subType, confidence, counts) {
+  const typeLabels = { flip: '🔄 フリップ', pull: '💪 プル', light: '🌟 ライトチェスト', mix: '✨ ミックス（バランス良好）' };
+  const typeColors = { flip: '#7c3aed', pull: '#dc2626', light: '#db2777', mix: '#059669' };
+  const color = typeColors[type] || '#666';
+  
+  const symSummary = Object.entries(counts)
+    .filter(([,v]) => v > 0)
+    .map(([k,v]) => `<span class="nrs">${symptomLabels[k]}×${v}</span>`)
+    .join(' ');
+  
+  const exKey = type === 'flip' ? (subType || '低音過重型') : type === 'light' ? (subType || '脆弱型') : '';
+  const exList = diagExercises[type] ? (diagExercises[type][exKey] || diagExercises[type][''] || []) : [];
+  const exHtml = exList.map(e => `
+    <div class="diag-ex-card">
+      <div class="diag-ex-name">▶ ${e.name}</div>
+      <div class="diag-ex-why">${e.why}</div>
+    </div>`).join('');
+  
+  document.getElementById('diag-result-content').innerHTML = `
+    <div class="diag-result-type">
+      <div class="diag-result-badge" style="background:${color};">${confidence}</div>
+      <div class="diag-result-title" style="color:${color};">${typeLabels[type]}${subType ? ' — ' + subType : ''}</div>
+      <div style="margin-bottom:12px;">
+        <div style="font-size:0.78rem;color:var(--gray);margin-bottom:6px;">記録した症状</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;">${symSummary}</div>
+      </div>
+      <div>
+        <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.88rem;font-weight:700;color:var(--dark);margin-bottom:10px;">💊 まずやってみるエクササイズ</div>
+        ${exHtml}
+      </div>
+    </div>
+    <div style="background:var(--pink-pale);border-radius:12px;padding:12px 14px;font-size:0.78rem;color:var(--gray);line-height:1.7;">
+      ⚠️ この診断はあくまで参考です。実際のレッスンでさやかさんに確認してもらってください。
+    </div>`;
+}
+
+function resetDiag() {
+  noteRecords = [];
+  selectedNoteKey = null;
+  activeSymptoms = [];
+  document.getElementById('recorded-notes').innerHTML = '';
+  document.getElementById('symptom-selector').style.display = 'none';
+  document.getElementById('diag-rec-status').style.display = 'none';
+  document.getElementById('diag-rec-next').style.display = 'none';
+  diagGoTo(1);
+}
+
+// Add step3 CSS
+const style = document.createElement('style');
+style.textContent = '.step-header.step3 { background: linear-gradient(90deg, #1976d2 0%, #0d47a1 100%); }';
+document.head.appendChild(style);
+</script>
+</body>
+</html>
