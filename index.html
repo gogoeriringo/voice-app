@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>エクササイズ レシピ あんちょこ</title>
+<title>ボイトレエクササイズ</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
@@ -411,7 +411,7 @@
 <header>
   <div class="mic-icon">🎤</div>
   <div>
-    <h1>エクササイズ レシピ あんちょこ</h1>
+    <h1>ボイトレエクササイズ</h1>
 
   </div>
 </header>
@@ -423,6 +423,7 @@
   <button class="tab-btn" onclick="switchTab('tools')">🔧ツール辞典</button>
   <button class="tab-btn" onclick="switchTab('map')">🗺️マッピング</button>
   <button class="tab-btn" onclick="switchTab('diag')">🎤 診断</button>
+  <button class="tab-btn" onclick="switchTab('cases')">📚 症例集</button>
 </div>
 
 <!-- ===== FLIP PANEL ===== -->
@@ -683,6 +684,181 @@
     </div>
   </div>
 
+  <!-- プルの対策 -->
+  <div class="step-section">
+    <div class="step-header" onclick="toggleStep(this)" style="background:linear-gradient(90deg,#d97706,#b45309);">
+      <div class="step-number">📋</div>
+      <div>
+        <div class="step-title">プルの対策まとめ</div>
+        <div class="step-goal">・原因・エクサの目的・さやかメモ</div>
+      </div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div style="padding:14px 16px;">
+        <div style="background:#fef3c7;border-radius:12px;padding:12px 14px;margin-bottom:12px;border-left:3px solid #d97706;">
+          <div style="font-weight:700;color:#92400e;margin-bottom:6px;font-size:0.88rem;">⚠️ 間違った認識</div>
+          <div style="font-size:0.84rem;">高い声は大きな声で歌う → <strong>✗</strong></div>
+        </div>
+        <table class="ex-table">
+          <thead><tr><th>項目</th><th>内容</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">本当の原因</td><td class="tool-cell">過緊張 / ミックスへの移行遅れ / イメージ</td></tr>
+            <tr><td class="range-cell">エクサの目的</td><td class="tool-cell">ヘッドボイスをつける / 弛緩させる / イメージを変える</td></tr>
+            <tr><td class="range-cell">さやかメモ</td><td class="tool-cell">ロックや舞台人など「大声が正解」と誤解されやすいジャンルの人が多い</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- さやかの頭の中（プルのレッスンフロー） -->
+  <div class="step-section">
+    <div class="step-header" onclick="toggleStep(this)" style="background:linear-gradient(90deg,#7c3aed,#6d28d9);">
+      <div class="step-number">🧠</div>
+      <div>
+        <div class="step-title">さやかの頭の中（レッスン中の判断フロー）</div>
+        <div class="step-goal">・Success/NGで次のアクションを変える</div>
+      </div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div style="padding:14px 16px;">
+        <div style="background:#f5f3ff;border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:0.82rem;line-height:1.7;border-left:3px solid #7c3aed;">
+          <strong>最初のエクサ例：</strong>母音 I / 子音 G / スタート音 C3 / スケール 1.5<br>
+          ※ リップバブルをやってから
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:#d1fae5;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid #22c55e;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:6px;">✅ SUCCESS → 次のステップへ</div>
+            ・1オクターブで行ったり来たりする<br>
+            ・喉を落とす方向性<br>
+            ・より滑らかにつなげる
+          </div>
+          <div style="background:#fee2e2;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid #ef4444;">
+            <div style="font-weight:700;color:#dc2626;margin-bottom:6px;">❌ NG → 原因を探る</div>
+            ・1.5スケールが難しすぎる<br>
+            ・コンセプトを理解してない<br>
+            ・共鳴腔の操作が下手<br>
+            ・音程をつけずにポルタメント
+          </div>
+        </div>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:#d1fae5;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid #22c55e;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:6px;">✅ SUCCESS（2段階目）</div>
+            ・喉を落とす<br>
+            ・喉を落とさず、とりあえず繋げる<br>
+            ・子音を変える<br>
+            ・母音を変える
+          </div>
+          <div style="background:#fee2e2;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid #ef4444;">
+            <div style="font-weight:700;color:#dc2626;margin-bottom:6px;">❌ NG（2段階目）</div>
+            ・モノマネをする<br>
+            ・ロジックを説明する<br>
+            ・ヘッドボイスとチェストボイスの確認をする<br>
+            → プルのツール第1段階から一番適したものを選ぶ
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- プルのツール第1段階 -->
+  <div class="step-section">
+    <div class="step-header" onclick="toggleStep(this)" style="background:linear-gradient(90deg,#0891b2,#0e7490);">
+      <div class="step-number">🔧</div>
+      <div>
+        <div class="step-title">プルのツール 第1段階</div>
+        <div class="step-goal">・優先順位なし。試してみて合うものを選ぶ</div>
+      </div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div style="padding:14px 16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">👑 ヘッドボイスの有無確認</div>
+            芯があり響く声かどうか確認
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">🧠 裏声が歌声に使えると認識させる</div>
+            ヘッドボイスを歌に使えるという意識づけ
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">🎵 ファルセットとヘッドボイスの違いの理解</div>
+            息多め vs 芯あり響く声
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">📉 早くからチェスト成分を削減させる</div>
+            1.5オクターブ / オクターブダウン
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">🔄 狭母音でチェスト⇔ヘッドを行き来させる</div>
+            1.5オクターブ / オクターブダウン
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">〰️ リップロールで音階を決めず行き来</div>
+            音程意識を外して自然な移行
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">🗣️ 狭母音と有声子音</div>
+            G・B・M・N など
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">🎻 ポルタメント / オクターブダウンハミング</div>
+            音程を意識させず、スライドさせる（バイオリンのように）
+          </div>
+          <div style="background:#e0f2fe;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#0369a1;margin-bottom:4px;">😊 エクサ中にほっぺたを押す</div>
+            仮声帯の緊張をリリース
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- プルの第2段階 -->
+  <div class="step-section">
+    <div class="step-header" onclick="toggleStep(this)" style="background:linear-gradient(90deg,#0891b2,#0e7490);">
+      <div class="step-number">🔧</div>
+      <div>
+        <div class="step-title">プルのツール 第2段階</div>
+        <div class="step-goal">・チェスト ⇔ ミックス → ヘッドへ</div>
+      </div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div style="padding:14px 16px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">🎼 1.5・オクターブスケールの多用</div>
+            狭母音・有声子音
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">あ M N → だんだん広母音へ</div>
+            MN子音での練習へ移行
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">🎼 1st付近のオクターブリピート</div>
+            オクターブダウンなども可
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">👄 母音の正確性を理解させる</div>
+            あいうえお の正しい形
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">⏱️ スケールの速度を早める</div>
+            遅すぎもNG
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.6;">
+            <div style="font-weight:700;color:#15803d;margin-bottom:4px;">🎼 狭母音のブロークンスケール</div>
+            より実際の歌に近い音階
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="gender-selector">
     <button class="gender-btn active" onclick="switchGender('pull','f')">👩 女性</button>
     <button class="gender-btn" onclick="switchGender('pull','m')">👨 男性</button>
@@ -865,6 +1041,71 @@
     <button class="gender-btn" onclick="switchGender('light','m')">👨 男性</button>
   </div>
 
+  <!-- POSTURE CHECK -->
+  <div class="step-section">
+    <div class="step-header" onclick="toggleStep(this)" style="background:linear-gradient(90deg,#0891b2 0%,#0e7490 100%);">
+      <div class="step-number">🦴</div>
+      <div>
+        <div class="step-title">Step 0 — 姿勢チェック（先にやる）</div>
+        <div class="step-goal">・巻肩・姿勢がライトチェストの原因になっていないか確認</div>
+      </div>
+      <div class="chevron">▼</div>
+    </div>
+    <div class="step-body">
+      <div style="padding:14px 16px;">
+        <div style="background:#e0f2fe;border-radius:12px;padding:14px;margin-bottom:14px;">
+          <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.88rem;font-weight:800;color:#0369a1;margin-bottom:8px;">🔗 巻肩 → ライトチェストになるメカニズム</div>
+          <div style="font-size:0.82rem;line-height:1.9;color:#333;">
+            巻肩になる<br>
+            　↓<br>
+            肩甲骨が前方に出る<br>
+            　↓<br>
+            <strong>肩甲舌骨筋</strong>（肩甲骨〜舌骨）が緩む<br>
+            　↓<br>
+            舌骨が不安定になる<br>
+            　↓<br>
+            <strong>甲状披裂筋（TA筋・地声筋）</strong>が働きにくくなる<br>
+            　↓<br>
+            声帯閉鎖が弱くなる → <strong style="color:#db2777;">ライトチェスト</strong>
+          </div>
+        </div>
+
+        <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.85rem;font-weight:700;color:#0369a1;margin-bottom:10px;">📋 姿勢チェックリスト</div>
+        <table class="ex-table">
+          <thead><tr><th>チェック項目</th><th>NG例</th></tr></thead>
+          <tbody>
+            <tr><td class="range-cell">肩の位置</td><td class="tool-cell">肩が前に巻いている（巻肩）→ 肩甲舌骨筋が緩む</td></tr>
+            <tr><td class="range-cell">胸骨の位置</td><td class="tool-cell">胸が落ちて内側に入っている → 胸骨舌骨筋が緩む</td></tr>
+            <tr><td class="range-cell">頭の位置</td><td class="tool-cell">頭が前に出ている（ストレートネック）→ 喉周り全体に負荷</td></tr>
+            <tr><td class="range-cell">顎の角度</td><td class="tool-cell">顎が上がっている or 引きすぎ → 声道が狭くなる</td></tr>
+          </tbody>
+        </table>
+
+        <div style="background:#fce7f3;border-radius:12px;padding:12px 14px;margin-top:14px;">
+          <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.82rem;font-weight:700;color:#db2777;margin-bottom:6px;">🦴 舌骨筋群の4点（さやかさんの資料より）</div>
+          <div style="font-size:0.8rem;line-height:1.8;color:#333;">
+            舌骨は4つの骨点に筋肉で繋がっている：<br>
+            ❶ 顎（オトガイ筋・顎舌骨筋）<br>
+            ❷ 茎突（後頭部エリア）<br>
+            ❸ <strong>胸骨</strong>（胸骨舌骨筋）<br>
+            ❹ <strong>肩甲骨</strong>（肩甲舌骨筋）<br>
+            <br>
+            この4点を外へ大きく張るような姿勢が発声の土台。<br>
+            巻肩で❸❹が内側に入ると、舌骨が不安定になり地声が出にくくなる。
+          </div>
+        </div>
+
+        <div style="background:#fff7ed;border-radius:12px;padding:12px 14px;margin-top:12px;border-left:3px solid #fb923c;">
+          <div style="font-size:0.8rem;line-height:1.7;color:#5d4037;">
+            ⚠️ <strong>姿勢が原因の場合はエクササイズだけでは改善しにくい。</strong><br>
+            フリップ脆弱型のレシピにも「姿勢の矯正」が明記されている。<br>
+            エクササイズの前に姿勢を整えるか、用手的アプローチを先に行う。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Degree selector -->
   <div class="gender-selector" style="margin-top:-8px;">
     <button class="gender-btn active" onclick="switchDegree('heavy')" id="degree-heavy">重度</button>
@@ -888,10 +1129,10 @@
           <tbody>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">ベロ出しあっあっあーなど何してもOK（音程はこの範疇なら自由）</td></tr>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">ストロー（音程はこの範疇なら自由）</td></tr>
-            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認</td></tr>
-            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あっあっあー</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認（appleのあ）</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あっあっあー（appleのあ）</td></tr>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あ</td></tr>
-            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG(ガ)</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG（明るいガ）</td></tr>
           </tbody>
         </table>
       </div>
@@ -933,7 +1174,7 @@
           <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
           <tbody>
             <tr><td class="range-cell">C#4(F3まで戻る)〜2nd</td><td class="tool-cell">1oct. あ</td></tr>
-            <tr><td class="range-cell">C#4(F3まで戻る)〜2nd</td><td class="tool-cell">1oct. GUG(が)</td></tr>
+            <tr><td class="range-cell">C#4(F3まで戻る)〜2nd</td><td class="tool-cell">1oct. GUG（明るいガ）</td></tr>
             <tr><td class="range-cell">F3〜2nd</td><td class="tool-cell">1.5 あっあっあ</td></tr>
           </tbody>
         </table>
@@ -958,8 +1199,8 @@
           <tbody>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">あっあっあっ、ストロー（音程はこの範疇なら自由）</td></tr>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン あっあっあっ</td></tr>
-            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌出して5トーン あ</td></tr>
-            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">舌を出して5トーン あ（appleのあ）</td></tr>
+            <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">5トーン GUG（明るいガ）</td></tr>
             <tr><td class="range-cell">F3〜G#4</td><td class="tool-cell">吸気発声・ボーカルフライ（からの5トーン あ）</td></tr>
           </tbody>
         </table>
@@ -1008,10 +1249,10 @@
           <tbody>
             <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">ベロ出しあっあっあーなど何してもOK（音程はこの範疇なら自由）</td></tr>
             <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">ストロー（音程はこの範疇なら自由）</td></tr>
-            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認</td></tr>
-            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出して5トーン あっあっあー</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出してあっあっあー 違いを確認（appleのあ）</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出して5トーン あっあっあー（appleのあ）</td></tr>
             <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">舌を出して5トーン あ</td></tr>
-            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">5トーン GUG(ガ)</td></tr>
+            <tr><td class="range-cell">C3〜D4</td><td class="tool-cell">5トーン GUG（明るいガ）</td></tr>
           </tbody>
         </table>
       </div>
@@ -1053,7 +1294,7 @@
           <thead><tr><th>範囲</th><th>ツール</th></tr></thead>
           <tbody>
             <tr><td class="range-cell"></td><td class="tool-cell">1oct. AH(あ)</td></tr>
-            <tr><td class="range-cell"></td><td class="tool-cell">1oct. GUG(が)</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">1oct. GUG（明るいガ）</td></tr>
             <tr><td class="range-cell"></td><td class="tool-cell">1.5 あっあっあ</td></tr>
           </tbody>
         </table>
@@ -1078,8 +1319,8 @@
           <tbody>
             <tr><td class="range-cell"></td><td class="tool-cell">あっあっあっ、ストロー（音程はこの範疇なら自由）</td></tr>
             <tr><td class="range-cell"></td><td class="tool-cell">5トーン あっあっあっ</td></tr>
-            <tr><td class="range-cell"></td><td class="tool-cell">舌出して5トーン あ</td></tr>
-            <tr><td class="range-cell"></td><td class="tool-cell">5トーン GUG</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">舌を出して5トーン あ（appleのあ）</td></tr>
+            <tr><td class="range-cell"></td><td class="tool-cell">5トーン GUG（明るいガ）</td></tr>
             <tr><td class="range-cell"></td><td class="tool-cell">吸気発声・ボーカルフライ（からの5トーン あ）</td></tr>
           </tbody>
         </table>
@@ -1258,6 +1499,108 @@
       </div>
     </div>
 
+    <!-- ボイスタイプ別エクサツール -->
+    <div class="tool-cat" data-cat="ボイスタイプ 子音 母音 スケール 強子音 弱子音">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">📊</span>
+        <span class="tool-cat-title">ボイスタイプ別エクサツール早見表</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div style="padding:10px;">
+          <table class="ex-table" style="font-size:0.75rem;">
+            <thead>
+              <tr><th>ボイスタイプ</th><th>母音</th><th>子音</th><th>スケール</th><th>声帯状態</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="range-cell"><strong>ライトチェスト</strong><br><span style="font-size:0.7rem;color:#666;">脆弱型/過緊張型</span></td>
+                <td class="tool-cell">広母音<br>「あ・え」</td>
+                <td class="tool-cell">有声子音<br>N・G・D・M・B</td>
+                <td class="tool-cell">5tone</td>
+                <td class="tool-cell">薄い・硬い</td>
+              </tr>
+              <tr>
+                <td class="range-cell"><strong>プル</strong><br><span style="font-size:0.7rem;color:#666;">過緊張型</span></td>
+                <td class="tool-cell">狭母音<br>「い・う」</td>
+                <td class="tool-cell">有声子音<br>G・N・M・W</td>
+                <td class="tool-cell">1.5・1oct</td>
+                <td class="tool-cell">分厚すぎる<br>圧着が強すぎる</td>
+              </tr>
+              <tr>
+                <td class="range-cell"><strong>フリップ</strong><br><span style="font-size:0.7rem;color:#666;">脆弱型/低音過重型</span></td>
+                <td class="tool-cell">中間母音「え」<br>広母音「あ」<br>狭母音「い・う」</td>
+                <td class="tool-cell">無声子音<br>K・T・P・S・F</td>
+                <td class="tool-cell">1.5・5tone<br>ポルタメント</td>
+                <td class="tool-cell">分厚すぎる<br>薄すぎる</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div style="background:#fce7f3;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid var(--pink);">
+              <div style="font-weight:700;color:var(--pink);margin-bottom:4px;">強子音を使うと…</div>
+              ・声帯の閉鎖が強まり、声に芯が出る<br>
+              ・パワーや存在感のある声になりやすい<br>
+              ・地声の安定、力強い発声の練習に◎
+            </div>
+            <div style="background:#eff6ff;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;border-left:3px solid #3b82f6;">
+              <div style="font-weight:700;color:#1d4ed8;margin-bottom:4px;">弱子音を使うと…</div>
+              ・声帯の閉鎖がゆるみ、息の流れが増える<br>
+              ・柔らかく、優しい声になりやすい<br>
+              ・裏声やミックスボイスの練習に◎
+            </div>
+          </div>
+          <div style="margin-top:10px;background:#f5f3ff;border-radius:10px;padding:10px 12px;font-size:0.8rem;line-height:1.7;">
+            <div style="font-weight:700;color:#6d28d9;margin-bottom:6px;">🗂️ グループ分類</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:0.78rem;">
+              <span style="font-weight:700;">舌を使う</span><span>N・D・G・T・K・S</span>
+              <span style="font-weight:700;">唇を使う</span><span>B・M・W・F・P</span>
+              <span style="font-weight:700;">歯を使う</span><span>Z</span>
+            </div>
+            <div style="margin-top:8px;color:#666;font-size:0.76rem;">グループをバランスよく使うと → 声の表現力・柔軟性が高まり、あらゆるジャンルの歌に対応しやすくなる</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 過緊張チェック -->
+    <div class="tool-cat" data-cat="過緊張 チェック 炙り出し">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🔍</span>
+        <span class="tool-cat-title">過緊張チェック（炙り出し方）</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div style="background:#fff3e0;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.84rem;line-height:1.8;border-left:3px solid #fb923c;">⚠️ こんな人は過緊張している可能性が高い</div>
+          <div class="tool-item" data-text="エッジボイスが出せない 過緊張サイン">エッジボイスが出せない</div>
+          <div class="tool-item" data-text="舌が過緊張 舌出し1分できない">舌が過緊張 / 舌出し1分できない</div>
+          <div class="tool-item" data-text="ボーカルフライができない 過緊張">ボーカルフライができない</div>
+          <div class="tool-item" data-text="サッキングができない 過緊張">サッキングができない</div>
+          <div class="tool-item" data-text="ギシギシハミングができない 過緊張">ギシギシハミングができない</div>
+          <div style="background:#e8f4fd;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:0.82rem;line-height:1.7;border-left:3px solid #38bdf8;">💡 サッキングしたままボーカルフライをさせると出来たりする</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 音がフラットする人 -->
+    <div class="tool-cat" data-cat="フラット CT ネイネイ 音程">
+      <div class="tool-cat-header" onclick="toggleStep(this)">
+        <span class="tool-cat-icon">🎵</span>
+        <span class="tool-cat-title">音がフラットする人（CT強化）</span>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="step-body">
+        <div class="tool-items">
+          <div style="background:#f0fdf4;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.84rem;line-height:1.8;border-left:3px solid #34d399;">原因：輪状甲状筋（CT）が弱い → 声帯の伸長が足りない<br>対処：ネイネイ筋のエクササイズでCTを鍛える</div>
+          <div class="tool-item" data-text="Nay ネイネイ CT強化 フラット">Nay（ネイ）系スケール — CTを直接働かせる</div>
+          <div class="tool-item" data-text="肩揉みマッサージ CT チェスト フラット">肩揉みマッサージ — チェスト範囲のCTの効きが良くなる</div>
+          <div class="tool-item" data-text="鎖骨マッサージ CT フラット">鎖骨のマッサージ — チェスト範囲のCTの効きが良くなる</div>
+          <div style="background:#fce7f3;border-radius:10px;padding:10px 14px;margin-top:8px;font-size:0.82rem;line-height:1.7;border-left:3px solid #e91e8c;">💬 さやかさんより：肩揉みや鎖骨マッサージで、チェスト範囲のCTの効きが良くなった実例あり<br><a href="https://youtu.be/LZZ1SwRVcnA?si=ZDTznT1CJzL_gooz" target="_blank" style="color:#0ea5e9;">▶ 参考動画</a></div>
+        </div>
+      </div>
+    </div>
+
     <!-- ネイザル・ファリンジャル -->
     <div class="tool-cat" data-cat="ネイザル ファリンジャル">
       <div class="tool-cat-header" onclick="toggleStep(this)">
@@ -1267,6 +1610,11 @@
       </div>
       <div class="step-body">
         <div class="tool-items">
+          <div style="background:#e8f4fd;border-radius:10px;padding:10px 14px;margin-bottom:10px;font-size:0.84rem;line-height:1.8;border-left:3px solid #38bdf8;">
+            <strong>ファリンジャルとは</strong>：鼻声なのに鼻をつまんでも声が変わらない人。<br>
+            原因：声帯閉鎖が弱い＋軟口蓋が下がっている。<br>
+            対処：ライトチェストのエクササイズ（有声強子音系）から入る。
+          </div>
           <div class="tool-item" data-text="B子音で舌出し鼻つまみ 軟蓋を上げて鼻にいかないようにする 過緊張がある場合は向かない">B子音で舌出し鼻つまみ👃（軟蓋を上げて鼻にいかないようにする）※過緊張がある場合は向かない</div>
           <div class="tool-item" data-text="んが んで鼻に入って がで鼻から抜ける を繰り返す">んが（"ん"で鼻に入って"が"で鼻から抜ける）を繰り返す</div>
           <div class="tool-item" data-text="声帯を分厚く使うエクササイズをやる">声帯を分厚く使うエクササイズをやる</div>
@@ -1441,11 +1789,9 @@
   <div class="diag-steps">
     <div class="diag-step active" id="dstep-ind-1">①性別</div>
     <div class="diag-step-arrow">›</div>
-    <div class="diag-step" id="dstep-ind-2">②録音</div>
+    <div class="diag-step" id="dstep-ind-3">②鍵盤×症状</div>
     <div class="diag-step-arrow">›</div>
-    <div class="diag-step" id="dstep-ind-3">③鍵盤</div>
-    <div class="diag-step-arrow">›</div>
-    <div class="diag-step" id="dstep-ind-4">④結果</div>
+    <div class="diag-step" id="dstep-ind-4">③結果</div>
   </div>
 
   <!-- STEP 1: GENDER -->
@@ -1457,44 +1803,10 @@
     </div>
   </div>
 
-  <!-- STEP 2: RECORD -->
-  <div id="dstep-2" class="diag-panel-step" style="display:none;">
-    <div class="diag-nav-row">
-      <button class="diag-back-btn" onclick="diagGoTo(1)">← 戻る</button>
-      <span id="diag-gender-label" class="diag-breadcrumb"></span>
-    </div>
-    <div class="diag-section-title">5トーン Ah を歌ってください</div>
-    <div class="diag-instruction">
-      <div class="diag-inst-note">🎵 ド・レ・ミ・ファ・ソ・ファ・ミ・レ・ドの5トーンで「あー」と歌う</div>
-      <div class="diag-inst-note">📍 スタート音：<span id="diag-start-note" style="font-weight:700;color:var(--pink);"></span></div>
-      <div class="diag-inst-note">🔁 半音ずつ上げながら複数回やってみよう</div>
-    </div>
-    <div style="text-align:center;margin:20px 0;">
-      <button id="diag-rec-btn" class="diag-rec-button" onclick="toggleRecording()">
-        <span id="diag-rec-icon">🎤</span>
-        <span id="diag-rec-label">録音開始</span>
-      </button>
-    </div>
-    <div id="diag-rec-status" style="display:none;">
-      <div class="diag-audio-bars">
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div><div class="bar"></div>
-        <div class="bar"></div><div class="bar"></div>
-      </div>
-      <div id="diag-analysis-result" style="margin-top:12px;"></div>
-    </div>
-    <div style="text-align:center;margin-top:16px;">
-      <button class="diag-next-btn" onclick="diagGoTo(3)">録音をスキップして次へ →</button>
-    </div>
-    <div id="diag-rec-next" style="display:none;text-align:center;margin-top:8px;">
-      <button class="diag-next-btn" onclick="diagGoTo(3)">次へ → 鍵盤で記録する</button>
-    </div>
-  </div>
-
   <!-- STEP 3: PIANO -->
   <div id="dstep-3" class="diag-panel-step" style="display:none;">
     <div class="diag-nav-row">
-      <button class="diag-back-btn" onclick="diagGoTo(2)">← 戻る</button>
+      <button class="diag-back-btn" onclick="diagGoTo(1)">← 戻る</button>
       <span class="diag-breadcrumb">気になった音を記録</span>
     </div>
     <div class="diag-section-title">どの音で気になりましたか？</div>
@@ -1507,8 +1819,8 @@
       <span class="pl-item"><span class="pl-dot" style="background:#c084fc;"></span>Low Chest</span>
       <span class="pl-item"><span class="pl-dot" style="background:#818cf8;"></span>High Chest</span>
       <span class="pl-item"><span class="pl-dot" style="background:#38bdf8;"></span>1st Bridge</span>
-      <span class="pl-item"><span class="pl-dot" style="background:#34d399;"></span>Middle/2nd Bridge</span>
-      <span class="pl-item"><span class="pl-dot" style="background:#fb923c;"></span>Head/3rd Bridge</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#fb923c;"></span>2nd Bridge</span>
+      <span class="pl-item"><span class="pl-dot" style="background:#ec4899;"></span>3rd Bridge</span>
     </div>
 
     <!-- Piano keyboard -->
@@ -1555,6 +1867,48 @@
   </div>
 
 </div><!-- /panel-diag -->
+
+<!-- ===== CASES PANEL ===== -->
+<div id="panel-cases" class="panel">
+
+  <div class="voice-header">
+    <h2>📚 症例集</h2>
+    <div>さやかさんのレッスンから学ぶ実例</div>
+  </div>
+
+  <!-- FILTER -->
+  <div class="cases-filter">
+    <button class="cases-filter-btn active" onclick="filterCases('all', this)">すべて</button>
+    <button class="cases-filter-btn" onclick="filterCases('light', this)">🌟 ライトチェスト</button>
+    <button class="cases-filter-btn" onclick="filterCases('pull', this)">💪 プル</button>
+    <button class="cases-filter-btn" onclick="filterCases('flip', this)">🔄 フリップ</button>
+  </div>
+
+  <!-- SEARCH -->
+  <div style="margin-bottom:14px;">
+    <input type="text" id="cases-search" oninput="searchCases()" placeholder="🔍 キーワードで検索（声変わり・アイドルなど）..."
+      style="width:100%;padding:12px 16px;border:2px solid var(--pink-light);border-radius:12px;font-size:0.88rem;font-family:'Noto Sans JP',sans-serif;outline:none;background:white;">
+  </div>
+
+  <!-- CASES LIST -->
+  <div id="cases-list"></div>
+
+  <!-- CASE DETAIL (hidden by default) -->
+  <div id="case-detail" style="display:none;">
+    <div class="map-nav-row">
+      <button class="diag-back-btn" onclick="closeCaseDetail()">← 一覧へ戻る</button>
+    </div>
+    <div id="case-detail-content"></div>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div id="cases-empty" style="display:none;text-align:center;padding:40px 20px;">
+    <div style="font-size:2.5rem;margin-bottom:12px;">📝</div>
+    <div style="font-family:'M PLUS Rounded 1c',sans-serif;font-size:0.95rem;font-weight:700;color:var(--gray);margin-bottom:8px;">まだ症例がありません</div>
+    <div style="font-size:0.82rem;color:#aaa;">動画を見てまとめたデータを追加してください</div>
+  </div>
+
+</div><!-- /panel-cases -->
 
 </div><!-- /content -->
 
@@ -1663,6 +2017,138 @@
   cursor: pointer;
   font-family: 'Noto Sans JP', sans-serif;
 }
+
+
+/* ===== CASES ===== */
+.cases-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.cases-filter-btn {
+  background: white;
+  border: 2px solid var(--pink-light);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.cases-filter-btn.active { background: var(--pink); color: white; border-color: var(--pink); }
+.case-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-left: 4px solid var(--pink-light);
+}
+.case-card:hover { box-shadow: 0 4px 20px rgba(233,30,140,0.15); border-left-color: var(--pink); }
+.case-card.type-light { border-left-color: #db2777; }
+.case-card.type-pull { border-left-color: #dc2626; }
+.case-card.type-flip { border-left-color: #7c3aed; }
+.case-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.case-type-badge {
+  background: var(--pink-pale);
+  color: var(--pink);
+  border-radius: 10px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.case-type-badge.type-light { background: #fce7f3; color: #db2777; }
+.case-type-badge.type-pull { background: #fee2e2; color: #dc2626; }
+.case-type-badge.type-flip { background: #ede9fe; color: #7c3aed; }
+.case-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--dark);
+  flex: 1;
+}
+.case-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.case-tag {
+  background: #f5f5f5;
+  color: var(--gray);
+  border-radius: 8px;
+  padding: 2px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.case-preview {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Detail */
+.case-detail-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
+.case-detail-header {
+  padding: 18px 18px 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.case-detail-section {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.case-detail-section:last-child { border-bottom: none; }
+.case-detail-section h4 {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.case-ex-row {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+.case-ex-row strong { color: var(--dark); }
+.case-quote {
+  background: var(--pink-pale);
+  border-left: 3px solid var(--pink);
+  border-radius: 0 10px 10px 0;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--dark);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+#cases-search:focus { border-color: var(--pink); }
 
 /* ===== DIAGNOSIS ===== */
 .diag-steps {
@@ -2115,9 +2601,12 @@ let currentLightDegree = 'heavy';
 function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  const idx = ['light','pull','flip','tools','map','diag'].indexOf(name);
+  const idx = ['light','pull','flip','tools','map','diag','cases'].indexOf(name);
   document.querySelectorAll('.tab-btn')[idx].classList.add('active');
   document.getElementById('panel-' + name).classList.add('active');
+  if (name === 'cases') {
+    filterCases('all', document.querySelector('.cases-filter-btn'));
+  }
 }
 
 function filterTools() {
@@ -2199,13 +2688,13 @@ const mapData = {
         icon: '🔴',
         exercises: [
           {
-            name: 'GUG（ガ）',
+            name: 'GUG（明るいガ）',
             why: 'G は有声の強子音。子音を出す瞬間、声帯が反射的に強く閉じる。U は喉を自然に下げる母音なので仮声帯の締まりを防ぎながら閉鎖を強化できる。',
             effect: '声帯閉鎖の感覚をつかむ。息っぽさが減り、音にハリが出てくる。',
             ok: '音にハリが出て息っぽさが減ってきた',
           },
           {
-            name: '舌出し5トーンあ',
+            name: '舌出し5トーン あ（appleのあ）',
             why: '舌を前に出しておくと喉の上昇が物理的にブロックされる。そのまま「あ」（広母音）を出すことでチェストを引き出しやすくなる。',
             effect: '喉が上がらない状態でチェストの声質を安定させる。',
             ok: '舌を引っ込めた時より声が前に出てハリが増した',
@@ -2548,7 +3037,7 @@ const toolData = {
 const symptomData = [
   { name: 'ひっくり返る（フリップ）', icon: '🔄', cause: '輪状甲状筋（CT）と甲状披裂筋（TA）のバランスが悪い。低音で声帯が厚すぎて高音に移行できずに急に薄くなる。', tools: [ { name: 'ポルタメント ギシギシハミング', why: '音程移行を意識させず自然に声区を通過させる。ギシギシで閉鎖を少し保ちながら移行できる。' }, { name: 'ペットボトルストロー 1.5オクターブ', why: '声帯への圧力を均一にしながら低音の過重をリセット。ひっくり返らずに音域を通過できる確率が上がる。' }, { name: '5T KAY/KIH ハイラリで中指', why: 'ひっくり返る音の直前でハイラリに指を当てて感覚を確認しながら、ゆっくり・息少なくで繰り返す。' }, { name: 'クレヨンしんちゃんのモノマネ', why: '甲状軟骨を前傾させるイメージをつけることでCTが働きやすくなり、低音の重さが自然に減る。' } ] },
   { name: '張り上げる（プル）', icon: '😤', cause: '声帯が分厚いまま高音まで持ち上げようとする過緊張。高い声＝大きな声という誤解が原因のことが多い。', tools: [ { name: '1.5 リップロール 鼻摘んで', why: '過緊張を自動的に緩めながら音域を行き来させる。鼻をつまんで鼻腔への逃げをブロックし口からの共鳴を意識させる。' }, { name: 'WOO/GOO/GEE Hooty', why: '声道を最大限広げた状態で発声することで、高音でも「力で押し上げなくていい」感覚をつける。' }, { name: 'ため息 → WOO', why: 'まず全部リリースしてから、そのゆるんだ喉のままWOOに繋げる。張り上げリセット後にヘッドを体験させる。' } ] },
-  { name: '声が細い・息っぽい（ライトチェスト）', icon: '💨', cause: '声帯閉鎖が弱い・薄い。声帯が適切に閉じられていないため息が漏れる。', tools: [ { name: 'GUG（ガ）5トーン', why: 'G（有声強子音）が声帯閉鎖を反射的に引き起こす。U（喉が下がる母音）でリラックスしながら閉鎖を強化できる。' }, { name: '舌出し5トーンあ', why: '舌を前に出して喉の上昇をブロック。広母音あ（チェスト引き出し）で声帯閉鎖を安定させる。' }, { name: 'ストロー', why: '自分で意識しなくても声帯が受動的に閉じる。力みなしで閉鎖感覚を体験させる最初の一歩。' } ] },
+  { name: '声が細い・息っぽい（ライトチェスト）', icon: '💨', cause: '声帯閉鎖が弱い・薄い。声帯が適切に閉じられていないため息が漏れる。', tools: [ { name: 'GUG（ガ）5トーン', why: 'G（有声強子音）が声帯閉鎖を反射的に引き起こす。U（喉が下がる母音）でリラックスしながら閉鎖を強化できる。' }, { name: '舌出し5トーン あ（appleのあ）', why: '舌を前に出して喉の上昇をブロック。広母音あ（チェスト引き出し）で声帯閉鎖を安定させる。' }, { name: 'ストロー', why: '自分で意識しなくても声帯が受動的に閉じる。力みなしで閉鎖感覚を体験させる最初の一歩。' } ] },
   { name: '高音で喉が閉まる（仮声帯）', icon: '🔒', cause: '仮声帯が締まっている。緊張・力み・高音への恐怖で仮声帯が収縮する。', tools: [ { name: 'ため息', why: '仮声帯は力みで締まる。ため息は体全体の緊張を抜く動作で仮声帯が自動的に開く。最もシンプルなリセット。' }, { name: 'はっはっはー（柔らかく笑う）', why: '笑いの動作は仮声帯を開く反射と連動。腹から笑うのではなく声帯だけを使う感覚がポイント。' }, { name: 'Hooty WOO/GOO', why: '声道を広げることで声帯・仮声帯へのプレッシャーが減り、高音でも締まらない状態を体験させる。' }, { name: 'F・P・W子音（エアフロー）', why: '弱子音の息の流れで仮声帯と声帯の緊張を流しながらリリース。強子音（G/K）を使う前の準備に。' } ] },
   { name: '鼻声になる（ネイザル）', icon: '👃', cause: '軟口蓋が上がっておらず、音が鼻腔に漏れている。または過度なネイザル共鳴。', tools: [ { name: '鼻つまんでGA', why: '鼻をつまんで鼻腔への漏れを物理的にブロック。GAで声を口から前に出す感覚を体験させる。' }, { name: 'んが（鼻→口）繰り返し', why: '「ん」で鼻に入り「が」で鼻から口に抜ける動作を繰り返すことで、軟口蓋の開閉コントロールを養う。' }, { name: 'K（ケイケイ）', why: '調音部位が中舌と硬口蓋になるためネイザルがちな発声でも音響的に前に集めやすい。' } ] },
   { name: '舌が固い・舌根が上がる', icon: '👅', cause: '舌根の過緊張。舌が奥に引っ込むと声道が狭くなり、共鳴・音色・音域に影響する。', tools: [ { name: 'ティッシュで舌を引き出す', why: '物理的に舌を前に引き出して舌根の緊張を強制リリース。声を出しながらやるとその場で声が変わる。' }, { name: 'オトガイ筋 圧死', why: '顎の下のオトガイ筋が硬いと舌骨が引っ張られて舌根が上がる。指で圧迫してほぐすと連鎖的に緊張が取れる。' }, { name: '二重母音 Ney / Wey', why: '舌を動かしながら発声する練習。固まった舌のパターンを動きで崩す。' } ] },
@@ -2654,18 +3143,36 @@ let animFrame = null;
 
 const bridgeColors = {
   f: {
-    'F3':'#c084fc','G3':'#c084fc','A3':'#c084fc','B3':'#c084fc',
-    'C4':'#818cf8','D4':'#818cf8','E4':'#818cf8','F4':'#818cf8','G4':'#818cf8',
-    'A4':'#38bdf8','B4':'#38bdf8','C5':'#38bdf8',
-    'D5':'#34d399','E5':'#34d399','F5':'#34d399',
-    'G5':'#fb923c','A5':'#fb923c','B5':'#fb923c','C6':'#fb923c',
+    // Low Chest F3-Eb4 (紫)
+    'F3':'#c084fc','Gb3':'#c084fc','G3':'#c084fc','Ab3':'#c084fc','A3':'#c084fc','Bb3':'#c084fc','B3':'#c084fc','C4':'#c084fc','Db4':'#c084fc','D4':'#c084fc','Eb4':'#c084fc',
+    // High Chest E4-G#4 (インディゴ)
+    'E4':'#818cf8','F4':'#818cf8','Gb4':'#818cf8','G4':'#818cf8','Ab4':'#818cf8',
+    // 1st Bridge A4-C5 (水色)
+    'A4':'#38bdf8','Bb4':'#38bdf8','B4':'#38bdf8','C5':'#38bdf8',
+    // Middle C#5-D#5 (緑)
+    'Db5':'#34d399','D5':'#34d399','Eb5':'#34d399',
+    // 2nd Bridge E5-F#5 (オレンジ)
+    'E5':'#fb923c','F5':'#fb923c','Gb5':'#fb923c',
+    // Head Voice G5-G#5 (赤)
+    'G5':'#f87171','Ab5':'#f87171',
+    // 3rd Bridge A5-C6 (ピンク)
+    'A5':'#ec4899','Bb5':'#ec4899','B5':'#ec4899','C6':'#ec4899',
   },
   m: {
-    'A2':'#c084fc','B2':'#c084fc','C3':'#c084fc','D3':'#c084fc','E3':'#c084fc','F3':'#c084fc','G3':'#c084fc',
-    'A3':'#818cf8','B3':'#818cf8','C4':'#818cf8','D4':'#818cf8',
-    'E4':'#38bdf8','F4':'#38bdf8','G4':'#38bdf8',
-    'A4':'#34d399','B4':'#34d399','C5':'#34d399',
-    'D5':'#fb923c','E5':'#fb923c','F5':'#fb923c',
+    // Low Chest A2-G3 (紫)
+    'A2':'#c084fc','Bb2':'#c084fc','B2':'#c084fc','C3':'#c084fc','Db3':'#c084fc','D3':'#c084fc','Eb3':'#c084fc','E3':'#c084fc','F3':'#c084fc','Gb3':'#c084fc','G3':'#c084fc',
+    // High Chest G#3-D4 (インディゴ)
+    'Ab3':'#818cf8','A3':'#818cf8','Bb3':'#818cf8','B3':'#818cf8','C4':'#818cf8','Db4':'#818cf8','D4':'#818cf8',
+    // 1st Bridge Eb4-F#4 (水色)
+    'Eb4':'#38bdf8','E4':'#38bdf8','F4':'#38bdf8','Gb4':'#38bdf8',
+    // Between G4-G#4 (緑)
+    'G4':'#34d399','Ab4':'#34d399',
+    // 2nd Bridge A4-C5 (オレンジ)
+    'A4':'#fb923c','Bb4':'#fb923c','B4':'#fb923c','C5':'#fb923c',
+    // Between C#5-D#5 (赤)
+    'Db5':'#f87171','D5':'#f87171','Eb5':'#f87171',
+    // 3rd Bridge E5-F#5 (ピンク)
+    'E5':'#ec4899','F5':'#ec4899','Gb5':'#ec4899',
   }
 };
 
@@ -2687,13 +3194,11 @@ function noteLabel(note) {
 
 function selectDiagGender(g) {
   diagGender = g;
-  document.getElementById('diag-gender-label').textContent = g === 'f' ? '👩 女性' : '👨 男性';
-  document.getElementById('diag-start-note').textContent = g === 'f' ? 'F3（低め）〜 複数キーで試そう' : 'C3（低め）〜 複数キーで試そう';
-  diagGoTo(2);
+  diagGoTo(3);
 }
 
 function diagGoTo(step) {
-  [1,2,3,4].forEach(s => {
+  [1,3,4].forEach(s => {
     const el = document.getElementById('dstep-' + s);
     if (el) el.style.display = s === step ? 'block' : 'none';
     const ind = document.getElementById('dstep-ind-' + s);
@@ -3018,7 +3523,7 @@ const diagExercises = {
   light: {
     '脆弱型': [
       { name: 'GUG（ガ）5トーン', why: 'G（有声強子音）で声帯閉鎖を反射的に引き起こす。' },
-      { name: '舌出し5トーンあ', why: '舌を前に出して喉の上昇をブロックしながらチェストを引き出す。' },
+      { name: '舌出し5トーン あ（appleのあ）', why: '舌を前に出して喉の上昇をブロックしながらチェストを引き出す。' },
       { name: 'ストロー', why: '力みなしで声帯閉鎖を受動的に体験させる。' },
     ],
     '過緊張型': [
@@ -3071,10 +3576,401 @@ function resetDiag() {
   activeSymptoms = [];
   document.getElementById('recorded-notes').innerHTML = '';
   document.getElementById('symptom-selector').style.display = 'none';
-  document.getElementById('diag-rec-status').style.display = 'none';
-  document.getElementById('diag-rec-next').style.display = 'none';
   diagGoTo(1);
 }
+
+
+// ===== CASES =====
+// 症例データ（動画を見てまとめたら追加していく）
+const casesData = [
+  {
+    id: 1,
+    type: "flip",
+    subType: "低音過重型",
+    gender: "m",
+    title: "声変わり中の男子（フリップ）サンプル",
+    background: "声変わり中。低音がかなり重い。ファルセットは得意。",
+    symptoms: ["ひっくり返る", "低音が重い"],
+    problemRange: "D4付近でひっくり返る",
+    exercises: [
+      { range: "C3〜2nd(A4-C5)", tool: "1.5 リップロール", note: "まず繋がりを探す。音程を意識させずポルタメントで。", quote: "", ng: "ひっくり返りが直らない時はペットボトルストローに切り替え。" },
+      { range: "C3〜2nd(A4-C5)", tool: "ポルタメント ギシギシハミング", note: "低音の重さをほぐしながら上まで持っていく。", quote: "「声変わりの途中だから、上と下がバラバラなのは当然。繋げることだけ意識して」", ng: "" },
+      { range: "G4〜", tool: "KAY オクターブダウン Funny", note: "ひっくり返った後の高音から降ろしてくる。", quote: "「ファルセットが得意なのを活かして、上から降りてくるイメージで」", ng: "" },
+    ],
+    result: "低音の重さが少し取れて、ブリッジ付近の繋がりが出てきた。",
+    nextStep: "Step2へ。5T KAY ハイラリで中指を当てながらブリッジを意識させる。",
+  },
+  {
+    id: 2,
+    type: "flip",
+    subType: "脆弱型ライトチェスト＆フリップ",
+    gender: "f",
+    title: "エリー（ライトチェスト＋フリップ＋プル 混合）レッスン1回目",
+    background: "ライトチェスト（声の震え・脆弱）＋フリップ（D5でフリップ）＋プル（1stブリッジあたりから）の混合型。輪状甲状筋のアクティベーションが全く足りていない状態。喉頭が下がりすぎて緩んでいる。ハイラリ系をかなりやらないといけない喉。",
+    symptoms: ["声の震え（ちりめんビブラート）", "D5でフリップ", "1stブリッジでプル"],
+    problemRange: "D5でフリップ / 1stブリッジ付近でプル / 全体的に声帯が脆弱",
+    exercises: [
+      {
+        range: "F3スタート 5トーン サステイン",
+        tool: "Na（明るめFunnyのナ）",
+        note: "伸ばすところでちりめんビブラートが出る。",
+        quote: "「脆弱からくる震え。ガチガチのライトチェストです」",
+        ng: "",
+      },
+      {
+        range: "F#3スタート 5トーン → C4スタートでトップG#4まで → 下降、最低F3まで",
+        tool: "Ga（Gから始まるガ）鼻つまみ",
+        note: "C4スタートでトップがG4になったら鼻つまみを指示。G#4まで上げてから下降。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "F3スタート 1.5リピート（トップG4まで → 最低F3まで）",
+        tool: "鼻つまみ Ga",
+        note: "低音も明るく。トップG4まで行ったら下降。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "F3スタート 1.5（トップE5まで）",
+        tool: "Na（FunnyのナHAILARI）鼻つまみなし",
+        note: "低音から高音まで全部同じ大きさで。喉をがっつり上げていい（ハイラリ）。中途半端に喉頭を落とさない。鼻から上だけの感覚で。C5で地声で出そうとしない→喉頭が下がるから。お腹はボコボコ動かさずずっと外に張る。",
+        quote: "「今のエリちゃんの状態は、まずこの経路（ハイラリ状態）で肉を繋げないと、ラリンジャルダウンはできない。フリップとプルの傾向がすごく出てきてしまう。ラリンジャルダウンして歌うのはずっと禁止」／「一旦喉頭を高くした状態で細く繋げてあげることが必要。ラリンジャルポジションを色々しちゃうと歌ってますます訳がわからなくなる」／「いつも引っかかってフリップするところも、ハイラリにしてると引っかからないでしょ？」",
+        ng: "C4スタートでC5に来た時に地声で出そうとしてしまう→喉頭が下がるので禁止。口を開きすぎない。",
+      },
+      {
+        range: "E3スタート（トップE5まで → 最低F#3まで）",
+        tool: "Nan 1.5（ハイラリでナン）",
+        note: "喉は上げたまま継続。",
+        quote: "",
+        ng: "口を開きすぎると喉頭が落ちる。絶対に口を開いちゃいけない。",
+      },
+      {
+        range: "B3スタート下降 → 最低F3まで",
+        tool: "Nan 5トーンリピート",
+        note: "途中で口がつる。",
+        quote: "「流石にもう少し口開けてもいい。なんなんの時に下唇が動くくらい」",
+        ng: "",
+      },
+      {
+        range: "B♭3スタート下降 → 最低F3まで",
+        tool: "Ga（ハイラリ）",
+        note: "もう少しだけ口を動かす。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "F3スタート（トップC#5あたり）",
+        tool: "Nay（ネイ）",
+        note: "4・5番目の音だけ喉への返り圧が強くなって他が弱い。全部同じ圧が理想。両端が緩んでいる。トップが弱い（C#5）。",
+        quote: "「真ん中が1番ミックスしている。普通真ん中がみんな下手なのにな。まあラリンジャルポジションを落としたら、プルするんだろうな」／「エリちゃんは肉のバランスが全体的にボコボコしてる。それをなめしているエクササイズだよ。ボコついてて1番肉がない所は痩せてる」",
+        ng: "",
+      },
+      {
+        range: "C#4スタート下降 1オクターブリピート",
+        tool: "Nay（ネイ）",
+        note: "",
+        quote: "「この時点でもうフリップの要素ないよ。この上げとく力をキープね」",
+        ng: "",
+      },
+      {
+        range: "C4スタート 1オクターブリピート（トップE5まで）",
+        tool: "Nay→Na 1オクターブリピート",
+        note: "ネイ(C4)ネイ(E4)ネイ(G4)ネイネイネイ→なんなんなんなん(C5)なん(G4)なん(E4)な〜(C4)。ブリッジあたりをネリネリ繰り返す。",
+        quote: "",
+        ng: "上に行った時に舌位を間違えると声が引っ込む。声がブルブルするのは引張が足りない。",
+      },
+      {
+        range: "F3スタート 1.5（トップF5まで）",
+        tool: "Na 1.5",
+        note: "",
+        quote: "「もうフリップの要素ないよ」／「絶対喉を下げちゃだめ。YOASOBIみたいに歌えるようにならないと。下手に喉頭を下げてドリカムとか歌うと、フリップとライトチェストを肥やしちゃうことになる」／「いまはミックスをつなぐために、おもちゃ遊びみたいな歌を歌ったほうがいい。もともと持ってる歌い方を生かすと（アースラとか）ライチェとフリップが進行しちゃう」／「輪状甲状筋のアクティベーションが全く足りてない状態。それをガンガン鬼かけてやっていく。それからやっと普通に歌えるくらい」",
+        ng: "",
+      },
+    ],
+    result: "レッスン中にフリップの要素が消えた（Na1.5 F3〜F5でフリップなし）。ハイラリ状態を保つことで1stブリッジも通過できるようになった。",
+    nextStep: "ハイラリ固定で継続。ラリンジャルダウンは当面禁止。CT活性をガンガン鍛えていく。",
+  },
+  {
+    id: 3,
+    type: "flip",
+    subType: "脆弱型ライトチェスト＆フリップ",
+    gender: "f",
+    title: "エリー レッスン2回目（2024年10月8日）",
+    background: "D5でフリップ。脆弱型フリップ。地声がうまく引っ張れるため1stブリッジでブリッジングせずにそのままフリップする。裏声の精度も高い。1stブリッジを地声で踏まないことが課題。前肩（巻き肩）の姿勢も要修正。",
+    symptoms: ["D5でフリップ", "1stブリッジで地声のまま上がってフリップ", "高音で揺れる（不安定）"],
+    problemRange: "D5でフリップ / A4付近で地声が引っ張りすぎ",
+    exercises: [
+      {
+        range: "A3スタート 1.5（トップF5まで）",
+        tool: "NeyNey ハイラリ",
+        note: "姿勢修正：肩を後ろにぎゅっと寄せて前肩を直してから開始。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "B♭3〜F5 ポルタメント（上昇）",
+        tool: "え〜〜〜（手を腰に当て、肩を後ろにしたまま）",
+        note: "トップで揺れが出る。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "F3 サステイン",
+        tool: "ん〜にゃあ〜〜〜",
+        note: "にゃあ〜でコントロールできない揺れが出る。",
+        quote: "「それはえりちゃんの何かが拒否ってる。落ちる何かがあるよね。釣り上げとく筋肉がなさすぎて、引くもんで下がってひっくり返るみたいな状態。ラリンジャルポジションを上げたまま『にゃ〜』って言う筋肉が必要」",
+        ng: "",
+      },
+      {
+        range: "E3〜G5 ポルタメント（上昇）",
+        tool: "ん〜〜〜〜（口を閉じて）",
+        note: "トップE5で揺れる。上にぐりんってなる感覚。もっと明るいブリっとした声で。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "E3〜E5〜E3 2オクターブ ポルタメント",
+        tool: "ん〜〜〜〜なあ〜〜〜〜",
+        note: "",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "E3〜D5 → 1.5ダウン（トップE5まで → 最低E3まで）",
+        tool: "ん〜〜〜Na（napのな）1.5ダウン",
+        note: "",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "A3スタート 1.5（トップG5まで → 最低E3まで）",
+        tool: "Na ハイラリ",
+        note: "A4で地声で頑張るのを早くやめて裏声ミックスにする。",
+        quote: "",
+        ng: "A4付近で地声で踏ん張ってしまう → 早めに手放す",
+      },
+      {
+        range: "1オクターブリピート（最低A3まで）",
+        tool: "Nya（1オクターブリピート）ドミソドドドドソミド〜",
+        note: "下がっていく。1番下がA3まで。",
+        quote: "「1stブリッジでブリッジングしてないから、地声でいい感じに引っ張れて、その後ひっくり返っちゃう。プルの人は母音が広がったり音量が上がったりするけど、えりちゃんは地声っぽくうまく引っ張れるから、その後フリップする」／「色がピンクで上がっていかなきゃいけないのに、赤よりのピンクで上がるから、限界がきて白がいきなりくる感じ。そうならないためにはブリッジで柔らかく裏声で入ること」",
+        ng: "",
+      },
+      {
+        range: "E♭4〜E♭5〜E♭4 1オクターブ",
+        tool: "あ 1オクターブ",
+        note: "もっと明るい声で。",
+        quote: "",
+        ng: "パキッとひっくり返る / トップで揺れる",
+      },
+      {
+        range: "同じスケール",
+        tool: "Nya（にゃ）1オクターブ",
+        note: "",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "1オクターブリピートダウン（最低G3まで）",
+        tool: "Nya 1オクターブリピートダウン ミミミミ〜シ♭ソ♭ミ〜〜",
+        note: "下がっていく。最後の音はG3。",
+        quote: "「まずファーストブリッジが課題。地声がうますぎて。でも裏声の精度もすごく上手。自分では地声と裏声がはっきりわかってるんだろうけど、聞いててわからないくらい上手」／「とにかくファーストを超えて、あ〜〜！でもいいから叫べるようにしなきゃいけない。えりちゃんのは弱い・脆いほうのフリップだから。どうしたって上がっていけない」／「一回叫べるところまで行ってから、その次にソリッドな、テクニックがめちゃ強固なものをつけていかなくちゃいけない。今日のえりちゃんはファーストを地声で踏まないが課題」",
+        ng: "",
+      },
+      {
+        range: "C5〜C4 1オクターブリピート（下がっていく）",
+        tool: "Nya ドドドド(C5)〜ソ(G4)ミ(E4)ド(C4)〜 1oct rep",
+        note: "ソの時に地声の厚みにしない。",
+        quote: "「ソの時に『はーい！地声ですよ〜』って声の厚みにしない」",
+        ng: "",
+      },
+      {
+        range: "A3〜A4〜A3 1オクターブリピート ポルタメント",
+        tool: "あ 1オクターブリピート ポルタメント",
+        note: "できた！ファーストブリッジ越えとセカンドブリッジがあまり変わらない。厚みは少し違う。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "C5〜C4 1オクターブリピート",
+        tool: "Na ナナナナ(C5)〜ナ(G4)ナ(E4)ナ(C4)〜",
+        note: "うまい！",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "C4〜F5〜C4 1オクターブリピート（トップF5まで）",
+        tool: "Na ド(C4)ミソドドドド(C5)〜〜ソミド(C4)〜〜 一息で2〜3回",
+        note: "まずはリリースしないと上でひっくり返る。",
+        quote: "",
+        ng: "一息でまだ1回転しかできない → 声帯がまだ使えていないから",
+      },
+      {
+        range: "同じスケール（トップF5まで）",
+        tool: "Kei スタッカート 息少なく・明るく",
+        note: "下のレンジが深く暗い声になると高音域にぶらぶら揺れが出る。",
+        quote: "「甲状軟骨が倒れきらなくて上へ上へ戻ろうとしてる。キュッとしまって明るい要素が出てれば2ndはピッと止まる。明るいケッケッケで歌えばビシッとセカンドが出てくる」／「これを徹底すれば、セカンドの揺れが止まります！」",
+        ng: "調子に乗って息を吹かないように。下のレンジを暗くしない。",
+      },
+    ],
+    result: "A3〜A4のポルタメントで1stブリッジ越えができた。NyaとNaで1stブリッジを軽く通過できるようになってきた。Keiスタッカートで2ndブリッジの揺れが止まることを確認。",
+    nextStep: "1stブリッジを地声で踏まないこと。ファーストを超えて叫べるところまで行く。明るいKei系でセカンドを安定させる。",
+  },
+  {
+    id: 4,
+    type: "light",
+    subType: "脆弱型（地声強化）",
+    gender: "f",
+    title: "会議の発表で自信を持って話したい人",
+    background: "声が弱々しく、会議の場で自信を持って発言できない。ボイスタイプはライトチェスト（地声が弱い）。声の強さと自信が連動している。",
+    symptoms: ["声が弱々しい", "人前で話すと自信がなくなる"],
+    problemRange: "",
+    exercises: [
+      {
+        range: "",
+        tool: "地声強化（ライトチェストのエクサ全般）",
+        note: "まず地声の土台を作る。声が出れば自信が出る。",
+        quote: "「声が出れば自信が出る。政治家さんとか声が弱々しい人いないでしょ？まず地声を鍛えてしっかり土台づくりしましょう！」",
+        ng: "",
+      },
+      {
+        range: "",
+        tool: "普通の発声レッスン",
+        note: "地声の土台を作った後は通常の発声レッスン。",
+        quote: "",
+        ng: "",
+      },
+      {
+        range: "",
+        tool: "会議の原稿を実際に読む練習",
+        note: "レッスン内で実際の発表原稿を読んでみる。読み方を教わることも自信につながる。",
+        quote: "「会議の前に、レッスンで発表してみて！とか原稿読ませてみる。読み方教わった、ってのも自信になる」",
+        ng: "",
+      },
+    ],
+    result: "",
+    nextStep: "地声の土台が出来てきたら、実際のプレゼン原稿を使って読み方の練習へ。",
+  },
+];
+let currentCaseFilter = 'all';
+let currentCaseId = null;
+
+function renderCases(data) {
+  const list = document.getElementById('cases-list');
+  const empty = document.getElementById('cases-empty');
+  
+  if (data.length === 0) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  
+  const typeLabels = { light: '🌟 ライトチェスト', pull: '💪 プル', flip: '🔄 フリップ' };
+  const genderLabel = { f: '👩 女性', m: '👨 男性' };
+  
+  list.innerHTML = data.map(c => `
+    <div class="case-card type-${c.type}" onclick="openCase(${c.id})">
+      <div class="case-card-header">
+        <span class="case-type-badge type-${c.type}">${typeLabels[c.type]}${c.subType ? ' · ' + c.subType : ''}</span>
+        <div class="case-title">${c.title}</div>
+      </div>
+      <div class="case-tags">
+        <span class="case-tag">${genderLabel[c.gender]}</span>
+        ${c.symptoms.map(s => `<span class="case-tag">${s}</span>`).join('')}
+        ${c.problemRange ? `<span class="case-tag">📍 ${c.problemRange}</span>` : ''}
+      </div>
+      <div class="case-preview">${c.background}</div>
+    </div>
+  `).join('');
+}
+
+function filterCases(type, btn) {
+  currentCaseFilter = type;
+  document.querySelectorAll('.cases-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const filtered = type === 'all' ? casesData : casesData.filter(c => c.type === type);
+  renderCases(filtered);
+}
+
+function searchCases() {
+  const q = document.getElementById('cases-search').value.toLowerCase();
+  const filtered = casesData.filter(c => {
+    if (currentCaseFilter !== 'all' && c.type !== currentCaseFilter) return false;
+    const text = [c.title, c.background, c.subType, ...(c.symptoms||[]), ...(c.quotes||[]), c.ngHandling||'', c.result||'']
+      .join(' ').toLowerCase();
+    return !q || text.includes(q);
+  });
+  renderCases(filtered);
+}
+
+function openCase(id) {
+  const c = casesData.find(x => x.id === id);
+  if (!c) return;
+  currentCaseId = id;
+  
+  const typeLabels = { light: '🌟 ライトチェスト', pull: '💪 プル', flip: '🔄 フリップ' };
+  const genderLabel = { f: '👩 女性', m: '👨 男性' };
+  
+  const exHtml = c.exercises.map(e => `
+    <div class="case-ex-row">
+      <div style="font-weight:700;color:var(--dark);margin-bottom:4px;">▶ ${e.tool}</div>
+      ${e.range ? `<div style="font-size:0.76rem;color:var(--pink);margin-bottom:4px;">📍 ${e.range}</div>` : ''}
+      ${e.note ? `<div style="font-size:0.8rem;color:#555;margin-bottom:4px;">${e.note}</div>` : ''}
+      ${e.quote ? `<div style="background:var(--pink-pale);border-left:3px solid var(--pink);border-radius:0 8px 8px 0;padding:7px 10px;margin-top:6px;font-size:0.79rem;color:var(--dark);font-style:italic;line-height:1.6;">💬 ${e.quote}</div>` : ''}
+      ${e.ng ? `<div style="background:#fff3e0;border-left:3px solid #fb923c;border-radius:0 8px 8px 0;padding:7px 10px;margin-top:6px;font-size:0.79rem;color:#5d4037;line-height:1.6;">⚠️ NG時: ${e.ng}</div>` : ''}
+    </div>`).join('');
+  
+  const quotesHtml = '';
+  
+  document.getElementById('case-detail-content').innerHTML = `
+    <div class="case-detail-card">
+      <div class="case-detail-header">
+        <span class="case-type-badge type-${c.type}">${typeLabels[c.type]}${c.subType ? ' · ' + c.subType : ''}</span>
+        <div class="case-title" style="margin-top:8px;font-size:1.05rem;">${c.title}</div>
+        <div style="margin-top:6px;display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="case-tag">${genderLabel[c.gender]}</span>
+          ${(c.symptoms||[]).map(s => `<span class="case-tag">${s}</span>`).join('')}
+        </div>
+      </div>
+      
+      <div class="case-detail-section">
+        <h4>👤 背景・プロフィール</h4>
+        <p style="font-size:0.84rem;line-height:1.7;">${c.background}</p>
+        ${c.problemRange ? `<p style="font-size:0.82rem;color:var(--pink);margin-top:6px;">📍 問題が起きる音域：${c.problemRange}</p>` : ''}
+      </div>
+      
+      <div class="case-detail-section">
+        <h4>🎯 打ったエクササイズ</h4>
+        ${exHtml}
+      </div>
+      
+
+      
+      ${c.result ? `<div class="case-detail-section"><h4>✅ 結果</h4><p style="font-size:0.84rem;line-height:1.7;">${c.result}</p></div>` : ''}
+      
+      ${c.nextStep ? `<div class="case-detail-section"><h4>➡️ 次のステップ</h4><p style="font-size:0.84rem;line-height:1.7;">${c.nextStep}</p></div>` : ''}
+    </div>
+  `;
+  
+  document.getElementById('cases-list').style.display = 'none';
+  document.querySelector('.cases-filter').style.display = 'none';
+  document.getElementById('cases-search').parentElement.style.display = 'none';
+  document.getElementById('cases-empty').style.display = 'none';
+  document.getElementById('case-detail').style.display = 'block';
+  window.scrollTo(0, 0);
+}
+
+function closeCaseDetail() {
+  document.getElementById('case-detail').style.display = 'none';
+  document.getElementById('cases-list').style.display = 'block';
+  document.querySelector('.cases-filter').style.display = 'flex';
+  document.getElementById('cases-search').parentElement.style.display = 'block';
+  filterCases(currentCaseFilter, document.querySelector('.cases-filter-btn.active'));
+}
+
+// Init cases on tab switch - merged into main switchTab below
 
 // Add step3 CSS
 const style = document.createElement('style');
